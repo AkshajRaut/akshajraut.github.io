@@ -1,8 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// Edit `base` to '/<your-repo-name>/' if deploying from a project repo (not username.github.io)
+// Change this if you're using a project repo (not username.github.io)
+const repoName = '' // e.g. '/portfolio' if repo = portfolio
+
 export default defineConfig({
   plugins: [react()],
-  base: '/', // change to '/<repo>/' if hosting from a repo
+  base: repoName ? `${repoName}/` : '/',
 })
