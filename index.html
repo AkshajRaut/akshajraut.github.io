@@ -1,53 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Akshaj Raut — Robotics Portfolio</title>
+  <title>Akshaj Raut — Robotics Console</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
-      <h1>Akshaj Raut</h1>
-      <p>MS Robotics @ Northeastern University | Boston, MA</p>
-      <nav>
-        <a href="mailto:raut.aks@northeastern.edu">Email</a> |
-        <a href="https://www.linkedin.com/in/akshajraut">LinkedIn</a> |
-        <a href="https://github.com/AkshajRaut">GitHub</a>
-      </nav>
+  <div id="start" class="screen start">
+    <canvas id="bg"></canvas>
+    <div class="start-inner">
+      <div class="logo">AR</div>
+      <h1 class="title">Akshaj Raut</h1>
+      <p class="tagline">Robotics • SLAM • Embedded Systems</p>
+      <button id="begin" class="btn primary">▶ Press Enter to Begin</button>
+      <div class="meta">
+        <a href="mailto:raut.aks@northeastern.edu">Email</a>
+        <a href="https://www.linkedin.com/in/akshajraut" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/AkshajRaut" target="_blank" rel="noopener">GitHub</a>
+      </div>
     </div>
-  </header>
-  <main class="container">
-    <section>
-      <h2>About Me</h2>
-      <p>I am a robotics engineer passionate about building autonomous systems and impactful healthcare technology.</p>
-    </section>
+  </div>
 
-    <section>
-      <h2>Projects</h2>
-      <ul>
-        <li><strong>Autonomous AI Drone:</strong> UAV with Pixhawk PX4, Raspberry Pi, EKF, LiDAR, object detection, GPS navigation.</li>
-        <li><strong>Omnidirectional Dense SLAM with 360° Video:</strong> Python + OpenCV pipeline for visual odometry and mapping.</li>
-        <li><strong>Live Firearm Detection & Alerting (YOLOv8):</strong> Real-time vision + Twilio alerts.</li>
-        <li><strong>ORB-SLAM3 on Autonomous Car:</strong> Stereo & inertial SLAM pipeline for NUance autonomous car.</li>
-        <li><strong>Low-Cost LiDAR Sensor:</strong> Custom hardware & ToF-based 2D mapping solution. <a href="https://github.com/AkshajRaut/LIDAR">GitHub Repo</a></li>
-      </ul>
-    </section>
+  <div id="app" class="screen app hidden">
+    <header class="hud">
+      <div class="brand">
+        <span class="badge">AR</span>
+        <div>
+          <div class="hud-title">ROBOTICS CONTROL • MISSION CONSOLE</div>
+          <div class="hud-sub">MS Robotics @ Northeastern • Boston, MA • GPA 3.7/4</div>
+        </div>
+      </div>
+      <div class="hud-controls">
+        <div class="counter"><span id="unlockedCount">0</span>/<span id="totalCount">5</span> Missions</div>
+        <button id="mute" class="btn ghost">SFX: ON</button>
+        <button id="reset" class="btn ghost">Reset</button>
+      </div>
+    </header>
 
-    <section>
-      <h2>Experience</h2>
-      <p><strong>PicoStone Technologies (Intern):</strong> Firmware (ESP-IDF), PCB design (KiCad), smart lighting solutions.</p>
-    </section>
+    <main class="console">
+      <section class="panel missions">
+        <h2>Missions</h2>
+        <div id="grid" class="grid"></div>
+      </section>
 
-    <section>
-      <h2>Education</h2>
-      <p>Northeastern University — MS Robotics, 2026</p>
-      <p>University of Mumbai — BE Electronics & Telecom, 2023</p>
-    </section>
-  </main>
-  <footer class="site-footer">
-    <p>© 2025 Akshaj Raut</p>
-  </footer>
+      <aside class="panel telemetry">
+        <h2>Telemetry</h2>
+        <div class="telemetry-box">
+          <div class="row"><span>Mode</span><span id="mode">IDLE</span></div>
+          <div class="row"><span>Uptime</span><span id="uptime">00:00</span></div>
+          <div class="row"><span>XP</span><span id="xp">0</span></div>
+        </div>
+
+        <h3>Skills</h3>
+        <ul class="pills">
+          <li>Python</li><li>C++</li><li>Embedded C</li><li>ROS2</li><li>PyTorch</li>
+          <li>SolidWorks</li><li>KiCad</li><li>MATLAB</li><li>LabVIEW</li>
+          <li>Raspberry Pi</li><li>ESP32</li><li>IMU</li><li>GPS</li><li>LiDAR</li>
+        </ul>
+
+        <h3>Links</h3>
+        <div class="links">
+          <a href="mailto:raut.aks@northeastern.edu">Email</a>
+          <a href="https://www.linkedin.com/in/akshajraut" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/AkshajRaut" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://ieeexplore.ieee.org/document/10037309" target="_blank" rel="noopener">IEEE Paper</a>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="foot">
+      <div>© <span id="year"></span> Akshaj Raut • Built for GitHub Pages</div>
+      <div class="foot-right">Theme: Futuristic Console • <a href="#" id="toggleTheme">Toggle</a></div>
+    </footer>
+  </div>
+
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <button id="closeModal" class="btn close" aria-label="Close">✕</button>
+      <h3 id="modalTitle"></h3>
+      <p id="modalDesc" class="muted"></p>
+      <ul id="modalBullets" class="bullets"></ul>
+      <div id="modalLinks" class="links"></div>
+    </div>
+  </div>
+
+  <script src="assets/script.js"></script>
 </body>
 </html>
