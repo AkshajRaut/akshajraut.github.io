@@ -1,0 +1,12 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f9f9f9;
+  color: #333;
+}
+.container { width: 90%; margin: auto; max-width: 900px; }
+header, footer { background: #004466; color: white; padding: 1em; text-align: center; }
+header nav a { color: white; margin: 0 0.5em; text-decoration: none; }
+section { margin: 2em 0; padding: 1em; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+h1, h2 { color: #004466; }
