@@ -1,14 +1,240 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Akshaj Raut — Robotics Engineer</title>
-    <meta name="description" content="Professional portfolio of Akshaj Raut — Robotics, SLAM, Perception, Embedded Systems."/>
-    <link rel="icon" href="/favicon.svg" />
-  </head>
-  <body class="bg-white text-slate-900">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akshaj Raut - Robotics Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .section-title {
+            @apply text-3xl font-bold text-white mb-8 text-center;
+        }
+        .card {
+            @apply bg-gray-800 p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-300">
+
+    <!-- Header & Navigation -->
+    <header class="bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white">Akshaj Raut</a>
+            <nav class="hidden md:flex space-x-6 text-lg">
+                <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
+                <a href="#skills" class="hover:text-cyan-400 transition-colors">Skills</a>
+                <a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a>
+                <a href="#experience" class="hover:text-cyan-400 transition-colors">Experience</a>
+                <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#about" class="block py-2 px-4 text-sm hover:bg-gray-700">About</a>
+            <a href="#skills" class="block py-2 px-4 text-sm hover:bg-gray-700">Skills</a>
+            <a href="#projects" class="block py-2 px-4 text-sm hover:bg-gray-700">Projects</a>
+            <a href="#experience" class="block py-2 px-4 text-sm hover:bg-gray-700">Experience</a>
+            <a href="#contact" class="block py-2 px-4 text-sm hover:bg-gray-700">Contact</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <!-- Hero Section -->
+        <section id="hero" class="text-center py-20">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white leading-tight mb-4">Akshaj Raut</h1>
+            <p class="text-xl md:text-2xl text-cyan-400 mb-8">Master's Student in Robotics at Northeastern University</p>
+            <p class="max-w-3xl mx-auto text-lg mb-8">
+                A passionate robotics enthusiast with a strong foundation in electrical and computer engineering, specializing in mobile robotics, computer vision, and autonomous systems.
+            </p>
+            <div class="flex justify-center space-x-4">
+                <a href="https://www.linkedin.com/in/akshaj-raut/" target="_blank" class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-6 rounded-lg transition-transform transform hover:scale-105">LinkedIn</a>
+                <a href="https://github.com/akshajraut" target="_blank" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition-transform transform hover:scale-105">GitHub</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20">
+             <h2 class="section-title">About Me</h2>
+             <div class="max-w-4xl mx-auto text-center text-lg">
+                <p class="mb-4">I'm currently pursuing my Master of Science in Robotics at Northeastern University, where I'm diving deep into mobile robotics, computer vision, and robot sensing. My goal is to develop innovative autonomous systems that can solve real-world problems.</p>
+                <p>With a Bachelor's degree in Electronics and Telecommunication and hands-on experience in both academic and professional settings, I've developed a strong skill set in hardware design, firmware development, and implementing complex algorithms for perception and navigation.</p>
+             </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-20">
+            <h2 class="section-title">Education</h2>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white">Northeastern University</h3>
+                    <p class="text-cyan-400">Boston, MA | May 2026</p>
+                    <p class="mt-2">Master of Science in Robotics</p>
+                    <p class="text-sm text-gray-400">Concentration: Electrical and Computer Engineering</p>
+                    <p class="mt-2 text-sm"><strong>Relevant Coursework:</strong> Mobile Robotics, Computer Vision, Robot Sensing and Navigation, Mechanics and Control.</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white">University of Mumbai</h3>
+                    <p class="text-cyan-400">Mumbai, India | May 2023</p>
+                    <p class="mt-2">Bachelor of Engineering in Electronics and Telecommunication</p>
+                     <p class="mt-2 text-sm"><strong>Relevant Coursework:</strong> Autonomous Vehicles, IOT and Industry 4.0, Wireless Networks.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-white mb-4">Languages & Frameworks</h3>
+                    <ul class="space-y-2">
+                        <li>Python</li>
+                        <li>PyTorch</li>
+                        <li>ROS2</li>
+                        <li>Embedded C / C++</li>
+                        <li>Dart</li>
+                        <li>Java</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-white mb-4">Software</h3>
+                    <ul class="space-y-2">
+                        <li>SolidWorks</li>
+                        <li>KiCad / EAGLE</li>
+                        <li>MATLAB / LabVIEW</li>
+                        <li>Git / GitHub / GitLab</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-white mb-4">Hardware & Sensors</h3>
+                    <ul class="space-y-2">
+                        <li>Raspberry Pi / Arduino</li>
+                        <li>ESP8266 / ESP32</li>
+                        <li>IMU / GPS</li>
+                        <li>LIDAR</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20">
+            <h2 class="section-title">Academic Projects</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1 -->
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white">Autonomous AI Drone</h3>
+                    <p class="text-cyan-400 text-sm mb-2">May 2025 - Present</p>
+                    <p class="text-sm">Constructed a UAV with a Pixhawk PX4 and Raspberry Pi 4 for autonomous point-to-point navigation using a custom EKF for sensor fusion. Integrated LIDAR and a camera for object detection, with ongoing development of person-following and 3D reconstruction capabilities.</p>
+                </div>
+                <!-- Project Card 2 -->
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white">Omnidirectional Dense SLAM</h3>
+                    <p class="text-cyan-400 text-sm mb-2">March - April 2025</p>
+                    <p class="text-sm">Developed a monocular SLAM pipeline in Python using 360° video from an Insta360 camera. Leveraged OpenCV for sparse visual odometry to estimate camera trajectory and reconstruct a sparse 3D map.</p>
+                </div>
+                <!-- Project Card 3 -->
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white">Live Firearm Detection System</h3>
+                    <p class="text-cyan-400 text-sm mb-2">March - April 2025</p>
+                    <p class="text-sm">Built a full-stack, real-time surveillance system by fine-tuning a YOLOv8 model on a custom firearm dataset. Achieved a mAP of 0.87 and integrated the Twilio API for automated SMS and call alerts upon detection.</p>
+                </div>
+                <!-- Project Card 4 -->
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white">ORB-SLAM3 on Autonomous Car</h3>
+                    <p class="text-cyan-400 text-sm mb-2">November - December 2024</p>
+                    <p class="text-sm">Implemented an ORB-SLAM3 pipeline for robust, real-time SLAM on an autonomous vehicle. Used stereo and stereo-inertial data from the NUance autonomous car to create detailed and accurate 3D maps.</p>
+                </div>
+                 <!-- Project Card 5 -->
+                <div class="card">
+                    <h3 class="text-xl font-bold text-white">Low-Cost LIDAR Sensor</h3>
+                    <p class="text-cyan-400 text-sm mb-2">August - April 2023</p>
+                    <p class="text-sm">Designed and implemented a low-cost LIDAR sensor for 2D mapping. Engineered a custom 3D-printed housing and integrated a time-of-flight sensor, mounting it on a vehicle to create a rough map of its surroundings.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Experience Section -->
+        <section id="experience" class="py-20">
+            <h2 class="section-title">Work Experience</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="card">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Hardware Development Intern</h3>
+                            <p class="text-cyan-400">PicoStone Technologies, Mumbai, India</p>
+                        </div>
+                        <p class="text-gray-400">Sep - Dec 2022</p>
+                    </div>
+                    <ul class="list-disc list-inside mt-4 space-y-2 text-sm">
+                        <li>Developed firmware for smart home lights using ESP-IDF to control lights from a smartphone.</li>
+                        <li>Designed PCB for a Wi-Fi-based LED light controller using KiCad to optimize for low-cost production.</li>
+                        <li>Collaborated with a team of 4 to test and integrate smart lighting solutions, enhancing product reliability.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publication Section -->
+        <section id="publication" class="py-20">
+            <h2 class="section-title">Publication</h2>
+            <div class="max-w-4xl mx-auto card text-center">
+                 <p class="italic">"Design and Implementation of IoT Based Local Weather Station An Experimental Setup"</p>
+                 <p class="mt-2">N. Tandan et al., 2022 IEEE Bombay Section Signature Conference (IBSSC)</p>
+                 <a href="https://doi.org/10.1109/IBSSC56953.2022.10037309" target="_blank" class="text-cyan-400 hover:underline mt-2 inline-block">View Publication</a>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 text-center">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="text-lg mb-4">I'm always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious vision. Feel free to reach out.</p>
+            <a href="mailto:raut.aks@northeastern.edu" class="text-2xl text-cyan-400 hover:underline">raut.aks@northeastern.edu</a>
+            <p class="mt-4">+1 (617) 331-6848</p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="container mx-auto px-6 py-4 text-center text-gray-400">
+            <div class="flex justify-center space-x-4 mb-4">
+                 <a href="https://www.linkedin.com/in/akshaj-raut/" target="_blank" class="hover:text-cyan-400">LinkedIn</a>
+                 <span>&bull;</span>
+                 <a href="https://github.com/akshajraut" target="_blank" class="hover:text-cyan-400">GitHub</a>
+            </div>
+            <p>&copy; 2025 Akshaj Raut. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
+        for (let i = 0; i < mobileMenuLinks.length; i++) {
+            mobileMenuLinks[i].addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        }
+    </script>
+</body>
 </html>
