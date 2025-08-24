@@ -21,8 +21,12 @@
             @apply text-3xl font-bold text-gray-100 mb-12 text-center;
         }
         .card {
-            @apply bg-gray-800/50 backdrop-blur-sm p-6 rounded-lg shadow-lg transition-transform transform hover:-translate-y-2;
+            @apply bg-gray-800/50 backdrop-blur-sm p-6 rounded-lg shadow-lg transition-all duration-300 transform hover:-translate-y-2;
             border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .project-card:hover {
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+            border-color: rgba(56, 189, 248, 0.5);
         }
         .nav-link {
              @apply hover:text-cyan-400 transition-colors relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-cyan-400 after:bottom-0 after:left-0 after:scale-x-0 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
@@ -47,8 +51,8 @@
             <a href="#" class="text-2xl font-bold text-white">Akshaj Raut</a>
             <nav class="hidden md:flex space-x-8 text-lg">
                 <a href="#about" class="nav-link">About</a>
-                <a href="#skills" class="nav-link">Skills</a>
                 <a href="#projects" class="nav-link">Projects</a>
+                <a href="#skills" class="nav-link">Skills</a>
                 <a href="#experience" class="nav-link">Experience</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </nav>
@@ -61,8 +65,8 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden">
             <a href="#about" class="block py-2 px-4 text-sm hover:bg-gray-700">About</a>
-            <a href="#skills" class="block py-2 px-4 text-sm hover:bg-gray-700">Skills</a>
             <a href="#projects" class="block py-2 px-4 text-sm hover:bg-gray-700">Projects</a>
+            <a href="#skills" class="block py-2 px-4 text-sm hover:bg-gray-700">Skills</a>
             <a href="#experience" class="block py-2 px-4 text-sm hover:bg-gray-700">Experience</a>
             <a href="#contact" class="block py-2 px-4 text-sm hover:bg-gray-700">Contact</a>
         </div>
@@ -90,6 +94,63 @@
                 <p class="mb-4">I'm currently pursuing my Master of Science in Robotics at Northeastern University, where I'm diving deep into mobile robotics, computer vision, and robot sensing. My goal is to develop innovative autonomous systems that can solve real-world problems.</p>
                 <p>With a Bachelor's degree in Electronics and Telecommunication and hands-on experience in both academic and professional settings, I've developed a strong skill set in hardware design, firmware development, and implementing complex algorithms for perception and navigation.</p>
              </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20">
+            <h2 class="section-title" data-aos="fade-up">Academic Projects</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card project-card flex flex-col" data-aos="fade-up">
+                    <div class="flex-grow">
+                        <h3 class="text-xl font-bold text-white">Autonomous AI Drone</h3>
+                        <p class="text-cyan-400 text-sm mb-2">May 2025 - Present</p>
+                        <p class="text-sm">Constructed a UAV with a Pixhawk PX4 and Raspberry Pi 4 for autonomous navigation using a custom EKF. Integrated LIDAR and a camera for object detection and 3D reconstruction.</p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-700">
+                        <p class="text-xs text-gray-400">Tech: Python, ROS2, EKF, LIDAR, Computer Vision</p>
+                    </div>
+                </div>
+                <div class="card project-card flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex-grow">
+                        <h3 class="text-xl font-bold text-white">Omnidirectional Dense SLAM</h3>
+                        <p class="text-cyan-400 text-sm mb-2">March - April 2025</p>
+                        <p class="text-sm">Developed a monocular SLAM pipeline in Python using 360° video. Leveraged OpenCV for sparse visual odometry to estimate camera trajectory and reconstruct a 3D map.</p>
+                    </div>
+                     <div class="mt-4 pt-4 border-t border-gray-700">
+                        <p class="text-xs text-gray-400">Tech: Python, OpenCV, SLAM</p>
+                    </div>
+                </div>
+                <div class="card project-card flex flex-col" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex-grow">
+                        <h3 class="text-xl font-bold text-white">Live Firearm Detection System</h3>
+                        <p class="text-cyan-400 text-sm mb-2">March - April 2025</p>
+                        <p class="text-sm">Built a full-stack surveillance system by fine-tuning a YOLOv8 model. Integrated Twilio API for automated SMS and call alerts upon detection.</p>
+                    </div>
+                     <div class="mt-4 pt-4 border-t border-gray-700">
+                        <p class="text-xs text-gray-400">Tech: Python, PyTorch, YOLOv8, Twilio API</p>
+                    </div>
+                </div>
+                <div class="card project-card flex flex-col" data-aos="fade-up">
+                    <div class="flex-grow">
+                        <h3 class="text-xl font-bold text-white">ORB-SLAM3 on Autonomous Car</h3>
+                        <p class="text-cyan-400 text-sm mb-2">November - December 2024</p>
+                        <p class="text-sm">Implemented an ORB-SLAM3 pipeline for robust, real-time SLAM on an autonomous vehicle using stereo and stereo-inertial data to create accurate 3D maps.</p>
+                    </div>
+                     <div class="mt-4 pt-4 border-t border-gray-700">
+                        <p class="text-xs text-gray-400">Tech: C++, ORB-SLAM3, ROS</p>
+                    </div>
+                </div>
+                <div class="card project-card flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex-grow">
+                        <h3 class="text-xl font-bold text-white">Low-Cost LIDAR Sensor</h3>
+                        <p class="text-cyan-400 text-sm mb-2">August - April 2023</p>
+                        <p class="text-sm">Designed and implemented a low-cost LIDAR sensor for 2D mapping. Engineered a custom 3D-printed housing and integrated a time-of-flight sensor.</p>
+                    </div>
+                     <div class="mt-4 pt-4 border-t border-gray-700">
+                        <p class="text-xs text-gray-400">Tech: Embedded C, KiCad, SolidWorks, 3D Printing</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Education Section -->
@@ -144,38 +205,6 @@
                         <li>IMU / GPS</li>
                         <li>LIDAR</li>
                     </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="py-20">
-            <h2 class="section-title" data-aos="fade-up">Academic Projects</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="card" data-aos="fade-up">
-                    <h3 class="text-xl font-bold text-white">Autonomous AI Drone</h3>
-                    <p class="text-cyan-400 text-sm mb-2">May 2025 - Present</p>
-                    <p class="text-sm">Constructed a UAV with a Pixhawk PX4 and Raspberry Pi 4 for autonomous point-to-point navigation using a custom EKF for sensor fusion. Integrated LIDAR and a camera for object detection, with ongoing development of person-following and 3D reconstruction capabilities.</p>
-                </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="text-xl font-bold text-white">Omnidirectional Dense SLAM</h3>
-                    <p class="text-cyan-400 text-sm mb-2">March - April 2025</p>
-                    <p class="text-sm">Developed a monocular SLAM pipeline in Python using 360° video from an Insta360 camera. Leveraged OpenCV for sparse visual odometry to estimate camera trajectory and reconstruct a sparse 3D map.</p>
-                </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="text-xl font-bold text-white">Live Firearm Detection System</h3>
-                    <p class="text-cyan-400 text-sm mb-2">March - April 2025</p>
-                    <p class="text-sm">Built a full-stack, real-time surveillance system by fine-tuning a YOLOv8 model on a custom firearm dataset. Achieved a mAP of 0.87 and integrated the Twilio API for automated SMS and call alerts upon detection.</p>
-                </div>
-                <div class="card" data-aos="fade-up">
-                    <h3 class="text-xl font-bold text-white">ORB-SLAM3 on Autonomous Car</h3>
-                    <p class="text-cyan-400 text-sm mb-2">November - December 2024</p>
-                    <p class="text-sm">Implemented an ORB-SLAM3 pipeline for robust, real-time SLAM on an autonomous vehicle. Used stereo and stereo-inertial data from the NUance autonomous car to create detailed and accurate 3D maps.</p>
-                </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="text-xl font-bold text-white">Low-Cost LIDAR Sensor</h3>
-                    <p class="text-cyan-400 text-sm mb-2">August - April 2023</p>
-                    <p class="text-sm">Designed and implemented a low-cost LIDAR sensor for 2D mapping. Engineered a custom 3D-printed housing and integrated a time-of-flight sensor, mounting it on a vehicle to create a rough map of its surroundings.</p>
                 </div>
             </div>
         </section>
