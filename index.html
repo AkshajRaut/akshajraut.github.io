@@ -8,9 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- AOS Animate on Scroll Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
@@ -25,15 +23,13 @@
             @apply bg-gray-800/50 backdrop-blur-sm rounded-2xl shadow-lg transition-all duration-300 transform hover:-translate-y-2;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+        /* MODIFICATION: Project Card Styling */
         .project-card-link {
             display: block;
-            position: relative;
-        }
-        .project-card-link:hover .link-icon {
-            opacity: 1;
         }
         .link-icon {
-            @apply absolute top-6 right-6 text-2xl text-gray-400 opacity-0 transition-opacity duration-300;
+            /* Adjusted margin from mr-3 to mr-4 for more space */
+            @apply text-xl text-cyan-400 transition-colors duration-300 mr-4;
         }
         .project-card:hover {
             box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
@@ -67,7 +63,6 @@
 </head>
 <body class="bg-gray-900 text-gray-300">
 
-    <!-- Header & Navigation -->
     <header class="bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="text-2xl font-bold text-white">Akshaj Raut</a>
@@ -84,7 +79,6 @@
                 </svg>
             </button>
         </div>
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden">
             <a href="#about" class="block py-2 px-4 text-sm hover:bg-gray-700">About</a>
             <a href="#projects" class="block py-2 px-4 text-sm hover:bg-gray-700">Projects</a>
@@ -96,7 +90,6 @@
 
     <main class="container mx-auto px-6 py-12">
 
-        <!-- Hero Section -->
         <section id="hero" class="relative text-center min-h-screen flex flex-col justify-center">
             <div id="particles-js"></div>
             <div class="relative z-10">
@@ -116,7 +109,6 @@
             </div>
         </section>
 
-        <!-- About Section -->
         <section id="about" class="py-20">
              <h2 class="section-title" data-aos="fade-up">About Me</h2>
              <div class="max-w-4xl mx-auto text-center text-lg" data-aos="fade-up" data-aos-delay="100">
@@ -125,16 +117,16 @@
              </div>
         </section>
 
-        <!-- Projects Section -->
         <section id="projects" class="py-20">
             <h2 class="section-title" data-aos="fade-up">Academic Projects</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- TODO: Replace this link with the direct URL to your project repository -->
                 <a href="https://github.com/akshajraut" target="_blank" class="project-card-link" data-aos="fade-up">
                     <div class="card project-card flex flex-col px-8 py-10 h-full">
-                         <i class="fab fa-github link-icon"></i>
                         <div class="flex-grow">
-                            <h3 class="text-xl font-bold text-white">Autonomous AI Drone</h3>
+                            <h3 class="text-xl font-bold text-white flex items-center mb-1"> 
+                                <i class="fab fa-github link-icon"></i>
+                                Autonomous AI Drone
+                            </h3>
                             <p class="text-cyan-400 text-sm mb-4">May 2025 - Present</p>
                             <p class="text-base">Constructed a UAV with a Pixhawk PX4 and Raspberry Pi 4 for autonomous navigation using a custom EKF. Integrated LIDAR and a camera for object detection, with ongoing development of person-following and 3D reconstruction capabilities.</p>
                         </div>
@@ -146,12 +138,13 @@
                         </div>
                     </div>
                 </a>
-                <!-- YouTube Project -->
                 <a href="https://youtu.be/cf-Sw53yA5E?si=Cjf-Ey51lNuXJp09" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="100">
                     <div class="card project-card flex flex-col px-8 py-10 h-full">
-                        <i class="fab fa-youtube link-icon"></i>
                         <div class="flex-grow">
-                            <h3 class="text-xl font-bold text-white">Omnidirectional Dense SLAM</h3>
+                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
+                                <i class="fab fa-youtube link-icon"></i>
+                                Omnidirectional Dense SLAM
+                            </h3>
                             <p class="text-cyan-400 text-sm mb-4">March - April 2025</p>
                             <p class="text-base">Developed a monocular SLAM pipeline in Python using 360° video. Leveraged OpenCV for sparse visual odometry to estimate camera trajectory and reconstruct a 3D map.</p>
                         </div>
@@ -162,12 +155,13 @@
                         </div>
                     </div>
                 </a>
-                 <!-- YouTube Project -->
-                <a href="https://youtu.be/AnZQ4tLCE10" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="200">
+                 <a href="https://youtu.be/AnZQ4tLCE10" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="200">
                     <div class="card project-card flex flex-col px-8 py-10 h-full">
-                        <i class="fab fa-youtube link-icon"></i>
                         <div class="flex-grow">
-                            <h3 class="text-xl font-bold text-white">Live Firearm Detection System</h3>
+                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
+                                <i class="fab fa-youtube link-icon"></i>
+                                Live Firearm Detection System
+                            </h3>
                             <p class="text-cyan-400 text-sm mb-4">March - April 2025</p>
                             <p class="text-base">Built a full-stack surveillance system by fine-tuning a YOLOv8 model. Integrated Twilio API for automated SMS and call alerts upon detection.</p>
                         </div>
@@ -179,12 +173,13 @@
                         </div>
                     </div>
                 </a>
-                <!-- YouTube Project -->
                 <a href="https://youtu.be/rRnFcgB8jcc" target="_blank" class="project-card-link" data-aos="fade-up">
                     <div class="card project-card flex flex-col px-8 py-10 h-full">
-                        <i class="fab fa-youtube link-icon"></i>
                         <div class="flex-grow">
-                            <h3 class="text-xl font-bold text-white">ORB-SLAM3 on Autonomous Car</h3>
+                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
+                                <i class="fab fa-youtube link-icon"></i>
+                                ORB-SLAM3 on Autonomous Car
+                            </h3>
                             <p class="text-cyan-400 text-sm mb-4">November - December 2024</p>
                             <p class="text-base">Implemented an ORB-SLAM3 pipeline for robust, real-time SLAM on an autonomous vehicle using stereo and stereo-inertial data to create accurate 3D maps.</p>
                         </div>
@@ -195,12 +190,13 @@
                         </div>
                     </div>
                 </a>
-                <!-- GitHub Project -->
                 <a href="https://github.com/AkshajRaut/LIDAR" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="100">
                     <div class="card project-card flex flex-col px-8 py-10 h-full">
-                        <i class="fab fa-github link-icon"></i>
                         <div class="flex-grow">
-                            <h3 class="text-xl font-bold text-white">Low-Cost LIDAR Sensor</h3>
+                             <h3 class="text-xl font-bold text-white flex items-center mb-1">
+                                <i class="fab fa-github link-icon"></i>
+                                Low-Cost LIDAR Sensor
+                            </h3>
                             <p class="text-cyan-400 text-sm mb-4">August - April 2023</p>
                             <p class="text-base">Designed and implemented a low-cost LIDAR sensor for 2D mapping. Engineered a custom 3D-printed housing and integrated a time-of-flight sensor.</p>
                         </div>
@@ -214,7 +210,6 @@
             </div>
         </section>
 
-        <!-- Education Section -->
         <section id="education" class="py-20">
             <h2 class="section-title" data-aos="fade-up">Education</h2>
             <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
@@ -234,7 +229,6 @@
             </div>
         </section>
 
-        <!-- Skills Section -->
         <section id="skills" class="py-20">
             <h2 class="section-title" data-aos="fade-up">Technical Skills</h2>
             <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
@@ -270,7 +264,6 @@
             </div>
         </section>
 
-        <!-- Work Experience Section -->
         <section id="experience" class="py-20">
             <h2 class="section-title" data-aos="fade-up">Work Experience</h2>
             <div class="max-w-4xl mx-auto" data-aos="fade-up">
@@ -291,7 +284,6 @@
             </div>
         </section>
 
-        <!-- Publication Section -->
         <section id="publication" class="py-20">
             <h2 class="section-title" data-aos="fade-up">Publication</h2>
             <div class="max-w-4xl mx-auto card text-center px-8 py-10" data-aos="fade-up">
@@ -301,7 +293,6 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
         <section id="contact" class="py-20 text-center">
             <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
             <p class="text-lg mb-4 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">I'm always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious vision. Feel free to reach out.</p>
@@ -311,7 +302,6 @@
 
     </main>
 
-    <!-- Footer -->
     <footer class="bg-gray-800/50">
         <div class="container mx-auto px-6 py-4 text-center text-gray-400">
             <div class="flex justify-center space-x-6 mb-4">
@@ -322,11 +312,8 @@
         </div>
     </footer>
     
-    <!-- AOS Animate on Scroll Library -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!-- Typed.js for typing animation -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <!-- particles.js for background animation -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <script>
