@@ -1,571 +1,506 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akshaj Raut - Robotics Engineer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0a192f;
-            background-image: linear-gradient(180deg, #0a192f 0%, #112240 100%);
-        }
-        /* section heading */
-        .section-title {
-            font-size: 2.25rem; /* text-4xl */
-            font-weight: 700;   /* font-bold */
-            margin-bottom: 3rem;/* mb-12 */
-            text-align: center;
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            background-image: linear-gradient(to right, #22d3ee, #8b5cf6);
-        }
-        /* base card look (kept simple CSS so it works without Tailwind build) */
-        .card {
-            background: rgba(31,41,55,0.5);
-            backdrop-filter: blur(6px);
-            border-radius: 1rem; /* rounded-2xl */
-            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        /* project link container */
-        .project-card-link { display: block; }
-        /* ✅ icon spacing fix — reliable without Tailwind @apply */
-        .link-icon {
-            font-size: 1.25rem;
-            color: #22d3ee;
-            margin-right: 1rem; /* adds space between logo and text */
-            transition: color 0.3s ease;
-            flex: 0 0 auto;
-        }
-        .project-card:hover {
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
-            border-color: rgba(139, 92, 246, 0.6);
-        }
-        .nav-link {
-            position: relative;
-            transition: color .3s;
-        }
-        .nav-link:hover { color: #22d3ee; }
-        .nav-link::after{
-            content:'';
-            position:absolute; left:0; bottom:0; height:2px; width:100%;
-            background:#22d3ee; transform:scaleX(0); transform-origin: 100% 100%;
-            transition: transform .3s;
-        }
-        .nav-link:hover::after{ transform: scaleX(1); transform-origin: 0 100%; }
-        .tech-tag {
-            display:inline-block; background:#374151; color:#d1d5db;
-            font-size:.75rem; font-weight:500; padding:.25rem .625rem; border-radius:9999px;
-        }
-        .typed-cursor { opacity:1; animation: blink .7s infinite; }
-        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-        #particles-js { position:absolute; inset:0; width:100%; height:100%; z-index:-1; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Akshaj Raut - Robotics Engineer</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <!-- Favicon (tab logo): replace href with your file path (png/ico/svg) -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="apple-touch-icon" href="favicon.png"/>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0a192f;
+      background-image: linear-gradient(180deg, #0a192f 0%, #112240 100%);
+    }
+    /* NOTE: Avoid @apply in plain <style> since CDN Tailwind won't process it. Use utility classes inline. */
+    .section-title{
+      background-image: linear-gradient(to right,#22d3ee,#8b5cf6);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      font-size:2.25rem; /* text-4xl */
+      font-weight:700;   /* font-bold */
+      margin-bottom:3rem;/* mb-12 */
+      text-align:center;
+    }
+    .card{
+      background: rgba(31,41,55,0.5); /* bg-gray-800/50 */
+      backdrop-filter: blur(6px);
+      border-radius:1rem; /* rounded-2xl */
+      box-shadow:0 10px 25px rgba(0,0,0,0.3);
+      border:1px solid rgba(255,255,255,0.1);
+      transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    }
+    .project-card:hover{
+      box-shadow: 0 0 30px rgba(139,92,246,0.4);
+      border-color: rgba(139,92,246,0.6);
+      transform: translateY(-0.5rem);
+    }
+    .typed-cursor{opacity:1;animation:blink .7s infinite}
+    @keyframes blink{0%{opacity:1}50%{opacity:0}100%{opacity:1}}
+    #particles-js{position:absolute;inset:0;z-index:-1}
+  </style>
 </head>
 <body class="bg-gray-900 text-gray-300">
 
-    <header class="bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-white">Akshaj Raut</a>
-            <nav class="hidden md:flex space-x-8 text-lg">
-                <a href="#about" class="nav-link">About</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#experience" class="nav-link">Experience</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </nav>
-            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                </svg>
-            </button>
+  <!-- Header -->
+  <header class="bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="text-2xl font-bold text-white">Akshaj Raut</a>
+      <nav class="hidden md:flex space-x-8 text-lg">
+        <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
+        <a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a>
+        <a href="#skills" class="hover:text-cyan-400 transition-colors">Skills</a>
+        <a href="#experience" class="hover:text-cyan-400 transition-colors">Experience</a>
+        <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
+      </nav>
+      <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden">
+      <a href="#about" class="block py-2 px-4 text-sm hover:bg-gray-700">About</a>
+      <a href="#projects" class="block py-2 px-4 text-sm hover:bg-gray-700">Projects</a>
+      <a href="#skills" class="block py-2 px-4 text-sm hover:bg-gray-700">Skills</a>
+      <a href="#experience" class="block py-2 px-4 text-sm hover:bg-gray-700">Experience</a>
+      <a href="#contact" class="block py-2 px-4 text-sm hover:bg-gray-700">Contact</a>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-6 py-12">
+
+    <!-- Hero -->
+    <section id="hero" class="relative text-center min-h-screen flex flex-col justify-center">
+      <div id="particles-js"></div>
+      <div class="relative z-10">
+        <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-4" data-aos="fade-down">Akshaj Raut</h1>
+        <p class="text-xl md:text-2xl text-cyan-400 mb-8" data-aos="fade-up" data-aos-delay="200"><span id="typed-subtitle"></span></p>
+        <p class="max-w-3xl mx-auto text-lg mb-8" data-aos="fade-up" data-aos-delay="400">
+          A passionate robotics enthusiast with a strong foundation in electrical and computer engineering, specializing in mobile robotics, computer vision, and autonomous systems.
+        </p>
+        <div class="flex justify-center items-center space-x-4" data-aos="fade-up" data-aos-delay="600">
+          <a href="https://www.linkedin.com/in/akshaj-raut/" target="_blank" class="inline-flex items-center bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-6 rounded-lg transition-all transform hover:scale-105 shadow-lg shadow-cyan-500/30">
+            <i class="fab fa-linkedin mr-2"></i>LinkedIn
+          </a>
+          <a href="https://github.com/akshajraut" target="_blank" class="inline-flex items-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition-all transform hover:scale-105 shadow-lg">
+            <i class="fab fa-github mr-2"></i>GitHub
+          </a>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden">
-            <a href="#about" class="block py-2 px-4 text-sm hover:bg-gray-700">About</a>
-            <a href="#projects" class="block py-2 px-4 text-sm hover:bg-gray-700">Projects</a>
-            <a href="#skills" class="block py-2 px-4 text-sm hover:bg-gray-700">Skills</a>
-            <a href="#experience" class="block py-2 px-4 text-sm hover:bg-gray-700">Experience</a>
-            <a href="#contact" class="block py-2 px-4 text-sm hover:bg-gray-700">Contact</a>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-20">
+      <h2 class="section-title" data-aos="fade-up">About Me</h2>
+      <div class="max-w-4xl mx-auto text-center text-lg" data-aos="fade-up" data-aos-delay="100">
+        <p class="mb-4">I'm currently pursuing my Master of Science in Robotics at Northeastern University, where I'm diving deep into mobile robotics, computer vision, and robot sensing. My goal is to develop innovative autonomous systems that can solve real-world problems.</p>
+        <p>With a Bachelor's degree in Electronics and Telecommunication and hands-on experience in both academic and professional settings, I've developed a strong skill set in hardware design, firmware development, and implementing complex algorithms for perception and navigation.</p>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-20">
+      <h2 class="section-title" data-aos="fade-up">Academic Projects</h2>
+
+      <!-- Visible top 6 -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 1 -->
+        <a href="https://github.com/akshajraut" target="_blank" class="block" data-aos="fade-up">
+          <div class="card project-card flex flex-col px-8 py-10 h-full">
+            <div class="flex-grow">
+              <!-- Added gap between icon and text -->
+              <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-1">
+                <i class="fab fa-github text-xl text-cyan-400"></i>
+                <span>Autonomous AI Drone</span>
+              </h3>
+              <p class="text-cyan-400 text-sm mb-4">May 2025 - Present</p>
+              <p class="text-base">Constructed a UAV with a Pixhawk PX4 and Raspberry Pi 4 for autonomous navigation using a custom EKF. Integrated LIDAR and a camera for object detection, with ongoing development of person-following and 3D reconstruction capabilities.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Python</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">ROS2</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">EKF</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">LIDAR</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 2 -->
+        <a href="https://youtu.be/cf-Sw53yA5E?si=Cjf-Ey51lNuXJp09" target="_blank" class="block" data-aos="fade-up" data-aos-delay="100">
+          <div class="card project-card flex flex-col px-8 py-10 h-full">
+            <div class="flex-grow">
+              <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-1">
+                <i class="fab fa-youtube text-xl text-cyan-400"></i>
+                <span>Omnidirectional Dense SLAM</span>
+              </h3>
+              <p class="text-cyan-400 text-sm mb-4">March - April 2025</p>
+              <p class="text-base">Developed a monocular SLAM pipeline in Python using 360° video. Leveraged OpenCV for sparse visual odometry to estimate camera trajectory and reconstruct a 3D map.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Python</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">OpenCV</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">SLAM</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 3 -->
+        <a href="https://youtu.be/AnZQ4tLCE10" target="_blank" class="block" data-aos="fade-up" data-aos-delay="200">
+          <div class="card project-card flex flex-col px-8 py-10 h-full">
+            <div class="flex-grow">
+              <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-1">
+                <i class="fab fa-youtube text-xl text-cyan-400"></i>
+                <span>Live Firearm Detection System</span>
+              </h3>
+              <p class="text-cyan-400 text-sm mb-4">March - April 2025</p>
+              <p class="text-base">Built a full-stack surveillance system by fine-tuning a YOLOv8 model. Integrated Twilio API for automated SMS and call alerts upon detection.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Python</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">PyTorch</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">YOLOv8</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Twilio API</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 4 -->
+        <a href="https://youtu.be/rRnFcgB8jcc" target="_blank" class="block" data-aos="fade-up">
+          <div class="card project-card flex flex-col px-8 py-10 h-full">
+            <div class="flex-grow">
+              <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-1">
+                <i class="fab fa-youtube text-xl text-cyan-400"></i>
+                <span>ORB-SLAM3 on Autonomous Car</span>
+              </h3>
+              <p class="text-cyan-400 text-sm mb-4">November - December 2024</p>
+              <p class="text-base">Implemented an ORB-SLAM3 pipeline for real-time SLAM on an autonomous vehicle using stereo and stereo-inertial data to create accurate 3D maps.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">C++</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">ORB-SLAM3</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">ROS</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 5 -->
+        <a href="https://github.com/AkshajRaut/LIDAR" target="_blank" class="block" data-aos="fade-up" data-aos-delay="100">
+          <div class="card project-card flex flex-col px-8 py-10 h-full">
+            <div class="flex-grow">
+              <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-1">
+                <i class="fab fa-github text-xl text-cyan-400"></i>
+                <span>Low-Cost LIDAR Sensor</span>
+              </h3>
+              <p class="text-cyan-400 text-sm mb-4">August - April 2023</p>
+              <p class="text-base">Designed and implemented a low-cost LIDAR sensor for 2D mapping. Engineered a custom 3D-printed housing and integrated a time-of-flight sensor.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Embedded C</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">KiCad</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">SolidWorks</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 6 (added from resume) -->
+        <a href="https://github.com/AkshajRaut/sfm-buddha-3d-reconstruction" target="_blank" class="block" data-aos="fade-up" data-aos-delay="200">
+          <div class="card project-card flex flex-col px-8 py-10 h-full">
+            <div class="flex-grow">
+              <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-1">
+                <i class="fab fa-github text-xl text-cyan-400"></i>
+                <span>3D Sparse Reconstruction & Bundle Adjustment</span>
+              </h3>
+              <p class="text-cyan-400 text-sm mb-4">October 2025 - Present</p>
+              <p class="text-base">Built an SfM pipeline over the Buddha dataset: matching, F/E estimation, triangulation, and global bundle adjustment in GTSAM to jointly optimize poses and structure.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Python</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">OpenCV</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">GTSAM</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- More Projects Toggle -->
+      <div class="text-center mt-10">
+        <button id="toggle-more" class="inline-flex items-center gap-2 bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded-lg transition-all">
+          <i class="fa-solid fa-layer-group"></i>
+          <span>More Projects</span>
+        </button>
+      </div>
+
+      <!-- Hidden more projects grid -->
+      <div id="more-projects" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 hidden">
+        <!-- Batch 1 -->
+        <a class="block" href="https://github.com/AkshajRaut/opencv-realtime-filters" target="_blank">
+          <div class="card project-card px-8 py-8 h-full">
+            <h3 class="text-lg font-semibold text-white flex items-center gap-3 mb-2">
+              <i class="fab fa-github text-cyan-400"></i><span>OpenCV Realtime Filters</span>
+            </h3>
+            <p class="text-sm text-gray-300">Realtime image filters with OpenCV.</p>
+          </div>
+        </a>
+        <a class="block" href="https://github.com/AkshajRaut/content-based-image-retrieval" target="_blank">
+          <div class="card project-card px-8 py-8 h-full">
+            <h3 class="text-lg font-semibold text-white flex items-center gap-3 mb-2">
+              <i class="fab fa-github text-cyan-400"></i><span>Content-Based Image Retrieval</span>
+            </h3>
+            <p class="text-sm text-gray-300">CBIR using feature descriptors/similarity.</p>
+          </div>
+        </a>
+        <a class="block" href="https://github.com/AkshajRaut/realtime-2d-object-detection" target="_blank">
+          <div class="card project-card px-8 py-8 h-full">
+            <h3 class="text-lg font-semibold text-white flex items-center gap-3 mb-2">
+              <i class="fab fa-github text-cyan-400"></i><span>Realtime 2D Object Detection</span>
+            </h3>
+            <p class="text-sm text-gray-300">Live detection pipeline.</p>
+          </div>
+        </a>
+        <a class="block" href="https://github.com/AkshajRaut/camera-calibration-and-AR" target="_blank">
+          <div class="card project-card px-8 py-8 h-full">
+            <h3 class="text-lg font-semibold text-white flex items-center gap-3 mb-2">
+              <i class="fab fa-github text-cyan-400"></i><span>Camera Calibration & AR</span>
+            </h3>
+            <p class="text-sm text-gray-300">Calibration and simple AR overlays.</p>
+          </div>
+        </a>
+        <a class="block" href="https://github.com/AkshajRaut/deep-learning-recognition" target="_blank">
+          <div class="card project-card px-8 py-8 h-full">
+            <h3 class="text-lg font-semibold text-white flex items-center gap-3 mb-2">
+              <i class="fab fa-github text-cyan-400"></i><span>Deep Learning Recognition</span>
+            </h3>
+            <p class="text-sm text-gray-300">DL classifiers/recognition tasks.</p>
+          </div>
+        </a>
+
+        <!-- Batch 2 -->
+        <a class="block" href="https://github.com/AkshajRaut/Driver-for-GNSS-puck-GPGGA" target="_blank">
+          <div class="card project-card px-8 py-8 h-full">
+            <h3 class="text-lg font-semibold text-white flex items-center gap-3 mb-2">
+              <i class="fab fa-github text-cyan-400"></i><span>Driver for GNSS puck (GPGGA)</span>
+            </h3>
+            <p class="text-sm text-gray-300">Parsing GNSS NMEA GPGGA.</p>
+          </div>
+        </a>
+        <a class="block" href="https://github.com/AkshajRaut/Automatic_Panoramic_Image_Mosaicing" target="_blank">
+          <div class="card project-card px-8 py-8 h-full">
+            <h3 class="text-lg font-semibold text-white flex items-center gap-3 mb-2">
+              <i class="fab fa-github text-cyan-400"></i><span>Automatic Panoramic Mosaicing</span>
+            </h3>
+            <p class="text-sm text-gray-300">Homographies + blending.</p>
+          </div>
+        </a>
+        <a class="block" href="https://github.com/AkshajRaut/Sensor-Fusion-of-GPS-and-IMU" target="_blank">
+          <div class="card project-card px-8 py-8 h-full">
+            <h3 class="text-lg font-semibold text-white flex items-center gap-3 mb-2">
+              <i class="fab fa-github text-cyan-400"></i><span>Sensor Fusion: GPS + IMU</span>
+            </h3>
+            <p class="text-sm text-gray-300">Fusion for robust localization.</p>
+          </div>
+        </a>
+        <a class="block" href="https://github.com/AkshajRaut/Driver-for-VectorNav-VN-100-IMU-VNYMR" target="_blank">
+          <div class="card project-card px-8 py-8 h-full">
+            <h3 class="text-lg font-semibold text-white flex items-center gap-3 mb-2">
+              <i class="fab fa-github text-cyan-400"></i><span>VectorNav VN-100 IMU Driver (VNYMR)</span>
+            </h3>
+            <p class="text-sm text-gray-300">Serial parsing & packets.</p>
+          </div>
+        </a>
+        <a class="block" href="https://github.com/AkshajRaut/WeatherStationVIT" target="_blank">
+          <div class="card project-card px-8 py-8 h-full">
+            <h3 class="text-lg font-semibold text-white flex items-center gap-3 mb-2">
+              <i class="fab fa-github text-cyan-400"></i><span>Weather Station (VIT)</span>
+            </h3>
+            <p class="text-sm text-gray-300">IoT-based sensing and logging.</p>
+          </div>
+        </a>
+        <a class="block" href="https://github.com/AkshajRaut/HomeAutomation" target="_blank">
+          <div class="card project-card px-8 py-8 h-full">
+            <h3 class="text-lg font-semibold text-white flex items-center gap-3 mb-2">
+              <i class="fab fa-github text-cyan-400"></i><span>Home Automation</span>
+            </h3>
+            <p class="text-sm text-gray-300">ESP-based smart home control.</p>
+          </div>
+        </a>
+        <a class="block" href="https://github.com/AkshajRaut/RGBdisplay" target="_blank">
+          <div class="card project-card px-8 py-8 h-full">
+            <h3 class="text-lg font-semibold text-white flex items-center gap-3 mb-2">
+              <i class="fab fa-github text-cyan-400"></i><span>RGB Display</span>
+            </h3>
+            <p class="text-sm text-gray-300">Embedded LED matrix driver.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="py-20">
+      <h2 class="section-title" data-aos="fade-up">Education</h2>
+      <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+        <div class="card px-8 py-10" data-aos="fade-right">
+          <h3 class="text-xl font-bold text-white">Northeastern University</h3>
+          <p class="text-cyan-400">Boston, MA | May 2026</p>
+          <p class="mt-2">Master of Science in Robotics</p>
+          <p class="text-sm text-gray-400">Concentration: Electrical and Computer Engineering</p>
+          <p class="mt-4 text-sm"><strong>Coursework:</strong> Autonomous Field Robotics, Mobile Robotics, Computer Vision, Robot Sensing and Navigation, Robotic Science and Systems.</p>
         </div>
-    </header>
-
-    <main class="container mx-auto px-6 py-12">
-
-        <section id="hero" class="relative text-center min-h-screen flex flex-col justify-center">
-            <div id="particles-js"></div>
-            <div class="relative z-10">
-                <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-4" data-aos="fade-down">Akshaj Raut</h1>
-                <p class="text-xl md:text-2xl text-cyan-400 mb-8" data-aos="fade-up" data-aos-delay="200"><span id="typed-subtitle"></span></p>
-                <p class="max-w-3xl mx-auto text-lg mb-8" data-aos="fade-up" data-aos-delay="400">
-                    A passionate robotics enthusiast with a strong foundation in electrical and computer engineering, specializing in mobile robotics, computer vision, and autonomous systems.
-                </p>
-                <div class="flex justify-center items-center space-x-4" data-aos="fade-up" data-aos-delay="600">
-                    <a href="https://www.linkedin.com/in/akshaj-raut/" target="_blank" class="inline-flex items-center bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-6 rounded-lg transition-all transform hover:scale-105 shadow-lg shadow-cyan-500/30">
-                        <i class="fab fa-linkedin mr-2"></i>LinkedIn
-                    </a>
-                    <a href="https://github.com/akshajraut" target="_blank" class="inline-flex items-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition-all transform hover:scale-105 shadow-lg">
-                        <i class="fab fa-github mr-2"></i>GitHub
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="py-20">
-            <h2 class="section-title" data-aos="fade-up">About Me</h2>
-            <div class="max-w-4xl mx-auto text-center text-lg" data-aos="fade-up" data-aos-delay="100">
-                <p class="mb-4">I'm currently pursuing my Master of Science in Robotics at Northeastern University, where I'm diving deep into mobile robotics, computer vision, and robot sensing. My goal is to develop innovative autonomous systems that can solve real-world problems.</p>
-                <p>With a Bachelor's degree in Electronics and Telecommunication and hands-on experience in both academic and professional settings, I've developed a strong skill set in hardware design, firmware development, and implementing complex algorithms for perception and navigation.</p>
-            </div>
-        </section>
-
-        <section id="projects" class="py-20">
-            <h2 class="section-title" data-aos="fade-up">Academic Projects</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Existing projects -->
-                <a href="https://github.com/akshajraut" target="_blank" class="project-card-link" data-aos="fade-up">
-                    <div class="card project-card flex flex-col px-8 py-10 h-full">
-                        <div class="flex-grow">
-                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
-                                <i class="fab fa-github link-icon"></i>
-                                Autonomous AI Drone
-                            </h3>
-                            <p class="text-cyan-400 text-sm mb-4">May 2025 - Present</p>
-                            <p class="text-base">Constructed a UAV with a Pixhawk PX4 and Raspberry Pi 4 for autonomous navigation using a custom EKF. Integrated LIDAR and a camera for object detection, with ongoing development of person-following and 3D reconstruction capabilities.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">ROS2</span>
-                            <span class="tech-tag">EKF</span>
-                            <span class="tech-tag">LIDAR</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://youtu.be/cf-Sw53yA5E?si=Cjf-Ey51lNuXJp09" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card project-card flex flex-col px-8 py-10 h-full">
-                        <div class="flex-grow">
-                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
-                                <i class="fab fa-youtube link-icon"></i>
-                                Omnidirectional Dense SLAM
-                            </h3>
-                            <p class="text-cyan-400 text-sm mb-4">March - April 2025</p>
-                            <p class="text-base">Developed a monocular SLAM pipeline in Python using 360° video. Leveraged OpenCV for sparse visual odometry to estimate camera trajectory and reconstruct a 3D map.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">OpenCV</span>
-                            <span class="tech-tag">SLAM</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://youtu.be/AnZQ4tLCE10" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card project-card flex flex-col px-8 py-10 h-full">
-                        <div class="flex-grow">
-                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
-                                <i class="fab fa-youtube link-icon"></i>
-                                Live Firearm Detection System
-                            </h3>
-                            <p class="text-cyan-400 text-sm mb-4">March - April 2025</p>
-                            <p class="text-base">Built a full-stack surveillance system by fine-tuning a YOLOv8 model. Integrated Twilio API for automated SMS and call alerts upon detection.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">PyTorch</span>
-                            <span class="tech-tag">YOLOv8</span>
-                            <span class="tech-tag">Twilio API</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://youtu.be/rRnFcgB8jcc" target="_blank" class="project-card-link" data-aos="fade-up">
-                    <div class="card project-card flex flex-col px-8 py-10 h-full">
-                        <div class="flex-grow">
-                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
-                                <i class="fab fa-youtube link-icon"></i>
-                                ORB-SLAM3 on Autonomous Car
-                            </h3>
-                            <p class="text-cyan-400 text-sm mb-4">November - December 2024</p>
-                            <p class="text-base">Implemented an ORB-SLAM3 pipeline for robust, real-time SLAM on an autonomous vehicle using stereo and stereo-inertial data to create accurate 3D maps.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
-                            <span class="tech-tag">C++</span>
-                            <span class="tech-tag">ORB-SLAM3</span>
-                            <span class="tech-tag">ROS</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://github.com/AkshajRaut/LIDAR" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card project-card flex flex-col px-8 py-10 h-full">
-                        <div class="flex-grow">
-                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
-                                <i class="fab fa-github link-icon"></i>
-                                Low-Cost LIDAR Sensor
-                            </h3>
-                            <p class="text-cyan-400 text-sm mb-4">August - April 2023</p>
-                            <p class="text-base">Designed and implemented a low-cost 2D LiDAR with custom 3D-printed housing and ToF sensing for mapping.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
-                            <span class="tech-tag">Embedded C</span>
-                            <span class="tech-tag">KiCad</span>
-                            <span class="tech-tag">SolidWorks</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- New projects -->
-                <a href="https://github.com/AkshajRaut/opencv-realtime-filters" target="_blank" class="project-card-link" data-aos="fade-up">
-                    <div class="card project-card flex flex-col px-8 py-10 h-full">
-                        <div class="flex-grow">
-                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
-                                <i class="fab fa-github link-icon"></i>
-                                OpenCV Realtime Filters
-                            </h3>
-                            <p class="text-cyan-400 text-sm mb-4">Computer Vision</p>
-                            <p class="text-base">Implemented real-time image filters and effects with OpenCV, focusing on frame-rate friendly processing.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
-                            <span class="tech-tag">Python</span><span class="tech-tag">OpenCV</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://github.com/AkshajRaut/content-based-image-retrieval" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="50">
-                    <div class="card project-card flex flex-col px-8 py-10 h-full">
-                        <div class="flex-grow">
-                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
-                                <i class="fab fa-github link-icon"></i>
-                                Content-Based Image Retrieval
-                            </h3>
-                            <p class="text-cyan-400 text-sm mb-4">Vision Search</p>
-                            <p class="text-base">Built CBIR using handcrafted/global descriptors to return visually similar images from a dataset.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
-                            <span class="tech-tag">Python</span><span class="tech-tag">OpenCV</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://github.com/AkshajRaut/realtime-2d-object-detection" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card project-card flex flex-col px-8 py-10 h-full">
-                        <div class="flex-grow">
-                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
-                                <i class="fab fa-github link-icon"></i>
-                                Realtime 2D Object Detection
-                            </h3>
-                            <p class="text-cyan-400 text-sm mb-4">Detection</p>
-                            <p class="text-base">Trained and evaluated lightweight detectors for real-time inference on video streams.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
-                            <span class="tech-tag">PyTorch</span><span class="tech-tag">YOLO</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://github.com/AkshajRaut/camera-calibration-and-AR" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="150">
-                    <div class="card project-card flex flex-col px-8 py-10 h-full">
-                        <div class="flex-grow">
-                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
-                                <i class="fab fa-github link-icon"></i>
-                                Camera Calibration & AR
-                            </h3>
-                            <p class="text-cyan-400 text-sm mb-4">Calibration</p>
-                            <p class="text-base">Computed intrinsics/extrinsics and projected virtual objects into scenes for simple AR overlays.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
-                            <span class="tech-tag">OpenCV</span><span class="tech-tag">Python</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://github.com/AkshajRaut/deep-learning-recognition" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card project-card flex flex-col px-8 py-10 h-full">
-                        <div class="flex-grow">
-                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
-                                <i class="fab fa-github link-icon"></i>
-                                Deep Learning Recognition
-                            </h3>
-                            <p class="text-cyan-400 text-sm mb-4">Classification</p>
-                            <p class="text-base">Trained CNN-based image classifiers and benchmarked accuracy vs. runtime on common datasets.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
-                            <span class="tech-tag">PyTorch</span><span class="tech-tag">CNN</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://github.com/AkshajRaut/Automatic_Panoramic_Image_Mosaicing" target="_blank" class="project-card-link" data-aos="fade-up">
-                    <div class="card project-card flex flex-col px-8 py-10 h-full">
-                        <div class="flex-grow">
-                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
-                                <i class="fab fa-github link-icon"></i>
-                                Automatic Panoramic Image Mosaicing
-                            </h3>
-                            <p class="text-cyan-400 text-sm mb-4">Vision</p>
-                            <p class="text-base">Estimated homographies with RANSAC and blended seams to stitch panoramas automatically.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
-                            <span class="tech-tag">OpenCV</span><span class="tech-tag">RANSAC</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://github.com/AkshajRaut/Sensor-Fusion-of-GPS-and-IMU" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="50">
-                    <div class="card project-card flex flex-col px-8 py-10 h-full">
-                        <div class="flex-grow">
-                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
-                                <i class="fab fa-github link-icon"></i>
-                                Sensor Fusion of GPS & IMU
-                            </h3>
-                            <p class="text-cyan-400 text-sm mb-4">Estimation</p>
-                            <p class="text-base">Fused GNSS and IMU streams for smoother state estimates using filtering techniques.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
-                            <span class="tech-tag">Python</span><span class="tech-tag">EKF</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://github.com/AkshajRaut/Driver-for-GNSS-puck-GPGGA" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card project-card flex flex-col px-8 py-10 h-full">
-                        <div class="flex-grow">
-                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
-                                <i class="fab fa-github link-icon"></i>
-                                GNSS Puck Driver (GPGGA)
-                            </h3>
-                            <p class="text-cyan-400 text-sm mb-4">Embedded</p>
-                            <p class="text-base">Parsed NMEA GPGGA messages and exposed GPS fix/quality for downstream robotics apps.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
-                            <span class="tech-tag">Embedded C/C++</span><span class="tech-tag">NMEA</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://github.com/AkshajRaut/Driver-for-VectorNav-VN-100-IMU-VNYMR" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="150">
-                    <div class="card project-card flex flex-col px-8 py-10 h-full">
-                        <div class="flex-grow">
-                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
-                                <i class="fab fa-github link-icon"></i>
-                                VectorNav VN-100 IMU Driver (VNYMR)
-                            </h3>
-                            <p class="text-cyan-400 text-sm mb-4">Embedded</p>
-                            <p class="text-base">Streamed orientation and inertial data in VNYMR format with validation and timestamping.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
-                            <span class="tech-tag">C/C++</span><span class="tech-tag">IMU</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://github.com/AkshajRaut/WeatherStationVIT" target="_blank" class="project-card-link" data-aos="fade-up">
-                    <div class="card project-card flex flex-col px-8 py-10 h-full">
-                        <div class="flex-grow">
-                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
-                                <i class="fab fa-github link-icon"></i>
-                                Weather Station (IoT)
-                            </h3>
-                            <p class="text-cyan-400 text-sm mb-4">IoT</p>
-                            <p class="text-base">Logged environmental data from low-cost sensors and published to a cloud dashboard.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
-                            <span class="tech-tag">ESP32</span><span class="tech-tag">MQTT</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://github.com/AkshajRaut/HomeAutomation" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="50">
-                    <div class="card project-card flex flex-col px-8 py-10 h-full">
-                        <div class="flex-grow">
-                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
-                                <i class="fab fa-github link-icon"></i>
-                                Home Automation
-                            </h3>
-                            <p class="text-cyan-400 text-sm mb-4">Embedded / IoT</p>
-                            <p class="text-base">Controlled smart lights and relays via Wi-Fi with mobile integration and custom firmware.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
-                            <span class="tech-tag">ESP-IDF</span><span class="tech-tag">KiCad</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://github.com/AkshajRaut/RGBdisplay" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card project-card flex flex-col px-8 py-10 h-full">
-                        <div class="flex-grow">
-                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
-                                <i class="fab fa-github link-icon"></i>
-                                RGB Display
-                            </h3>
-                            <p class="text-cyan-400 text-sm mb-4">Embedded</p>
-                            <p class="text-base">Drove an RGB LED matrix with custom timing and simple animation effects.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
-                            <span class="tech-tag">Embedded C</span><span class="tech-tag">GPIO</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <section id="education" class="py-20">
-            <h2 class="section-title" data-aos="fade-up">Education</h2>
-            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
-                <div class="card px-8 py-10" data-aos="fade-right">
-                    <h3 class="text-xl font-bold text-white">Northeastern University</h3>
-                    <p class="text-cyan-400">Boston, MA | May 2026</p>
-                    <p class="mt-2">Master of Science in Robotics</p>
-                    <p class="text-sm text-gray-400">Concentration: Electrical and Computer Engineering • GPA: 3.7/4</p>
-                    <p class="mt-4 text-sm"><strong>Relevant Coursework:</strong> Autonomous Field Robotics, Mobile Robotics, Computer Vision, Robot Sensing and Navigation.</p>
-                </div>
-                <div class="card px-8 py-10" data-aos="fade-left">
-                    <h3 class="text-xl font-bold text-white">University of Mumbai</h3>
-                    <p class="text-cyan-400">Mumbai, India | May 2023</p>
-                    <p class="mt-2">Bachelor of Engineering in Electronics and Telecommunication</p>
-                    <p class="mt-4 text-sm"><strong>Relevant Coursework:</strong> Autonomous Vehicles, IoT and Industry 4.0, Wireless Networks.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="skills" class="py-20">
-            <h2 class="section-title" data-aos="fade-up">Technical Skills</h2>
-            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <div class="card px-8 py-10" data-aos="fade-up">
-                    <h3 class="text-xl font-semibold text-white mb-4"><i class="fas fa-code mr-2 text-cyan-400"></i>Languages & Frameworks</h3>
-                    <ul class="space-y-2">
-                        <li>Python, C++, Embedded C</li>
-                        <li>PyTorch</li>
-                        <li>ROS2</li>
-                        <li>OpenCV</li>
-                        <li>Dart, Java</li>
-                    </ul>
-                </div>
-                <div class="card px-8 py-10" data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="text-xl font-semibold text-white mb-4"><i class="fas fa-tools mr-2 text-cyan-400"></i>Software & Tools</h3>
-                    <ul class="space-y-2">
-                        <li>SolidWorks</li>
-                        <li>KiCad / EAGLE</li>
-                        <li>MATLAB / LabVIEW</li>
-                        <li>Git / GitHub / GitLab</li>
-                    </ul>
-                </div>
-                <div class="card px-8 py-10" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="text-xl font-semibold text-white mb-4"><i class="fas fa-microchip mr-2 text-cyan-400"></i>Hardware & Sensors</h3>
-                    <ul class="space-y-2">
-                        <li>Raspberry Pi / Arduino</li>
-                        <li>ESP8266 / ESP32</li>
-                        <li>IMU / GPS / RGB-D Cameras</li>
-                        <li>LiDAR</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="experience" class="py-20">
-            <h2 class="section-title" data-aos="fade-up">Work Experience</h2>
-            <div class="max-w-4xl mx-auto" data-aos="fade-up">
-                <div class="card px-8 py-10">
-                    <div class="flex flex-col sm:flex-row justify-between sm:items-start">
-                        <div>
-                            <h3 class="text-xl font-bold text-white">Hardware Development Intern</h3>
-                            <p class="text-cyan-400">PicoStone Technologies, Mumbai, India</p>
-                        </div>
-                        <p class="text-gray-400 mt-2 sm:mt-0">Sep - Dec 2022</p>
-                    </div>
-                    <ul class="list-disc list-inside mt-4 space-y-2 text-sm">
-                        <li>Developed firmware for smart home lights using ESP-IDF to control lights from a smartphone.</li>
-                        <li>Designed PCB for a Wi-Fi-based LED light controller using KiCad to optimize for low-cost production.</li>
-                        <li>Collaborated with a team of 4 to test and integrate smart lighting solutions, enhancing product reliability.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="publication" class="py-20">
-            <h2 class="section-title" data-aos="fade-up">Publication</h2>
-            <div class="max-w-4xl mx-auto card text-center px-8 py-10" data-aos="fade-up">
-                <p class="italic">"Design and Implementation of IoT Based Local Weather Station – An Experimental Setup"</p>
-                <p class="mt-2">N. Tandan et al., 2022 IEEE Bombay Section Signature Conference (IBSSC)</p>
-                <a href="https://ieeexplore.ieee.org/document/10037309" target="_blank" class="text-cyan-400 hover:underline mt-2 inline-block">View Publication</a>
-            </div>
-        </section>
-
-        <section id="contact" class="py-20 text-center">
-            <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
-            <p class="text-lg mb-4 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">I'm always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious vision. Feel free to reach out.</p>
-            <a href="mailto:raut.aks@northeastern.edu" class="text-2xl text-cyan-400 hover:underline" data-aos="fade-up" data-aos-delay="200">raut.aks@northeastern.edu</a>
-            <!-- Phone number removed as requested -->
-        </section>
-
-    </main>
-
-    <footer class="bg-gray-800/50">
-        <div class="container mx-auto px-6 py-4 text-center text-gray-400">
-            <div class="flex justify-center space-x-6 mb-4">
-                <a href="https://www.linkedin.com/in/akshaj-raut/" target="_blank" class="text-2xl hover:text-cyan-400 transition-colors"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/akshajraut" target="_blank" class="text-2xl hover:text-cyan-400 transition-colors"><i class="fab fa-github"></i></a>
-            </div>
-            <p>&copy; 2025 Akshaj Raut. All Rights Reserved.</p>
+        <div class="card px-8 py-10" data-aos="fade-left">
+          <h3 class="text-xl font-bold text-white">University of Mumbai</h3>
+          <p class="text-cyan-400">Mumbai, India | May 2023</p>
+          <p class="mt-2">Bachelor of Engineering in Electronics and Telecommunication</p>
+          <p class="mt-4 text-sm"><strong>Coursework:</strong> Autonomous Vehicles, IoT & Industry 4.0, Wireless Networks.</p>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- Skills -->
+    <section id="skills" class="py-20">
+      <h2 class="section-title" data-aos="fade-up">Technical Skills</h2>
+      <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div class="card px-8 py-10" data-aos="fade-up">
+          <h3 class="text-xl font-semibold text-white mb-4"><i class="fas fa-code mr-2 text-cyan-400"></i>Languages & Frameworks</h3>
+          <ul class="space-y-2">
+            <li>Python</li>
+            <li>C++ / Embedded C</li>
+            <li>PyTorch</li>
+            <li>ROS2</li>
+            <li>Dart</li>
+            <li>Java</li>
+          </ul>
+        </div>
+        <div class="card px-8 py-10" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="text-xl font-semibold text-white mb-4"><i class="fas fa-tools mr-2 text-cyan-400"></i>Software</h3>
+          <ul class="space-y-2">
+            <li>SolidWorks</li>
+            <li>KiCad / EAGLE</li>
+            <li>MATLAB / LabVIEW</li>
+            <li>OpenCV</li>
+            <li>Git / GitHub / GitLab</li>
+          </ul>
+        </div>
+        <div class="card px-8 py-10" data-aos="fade-up" data-aos-delay="200">
+          <h3 class="text-xl font-semibold text-white mb-4"><i class="fas fa-microchip mr-2 text-cyan-400"></i>Hardware & Sensors</h3>
+          <ul class="space-y-2">
+            <li>Raspberry Pi / Arduino</li>
+            <li>ESP8266 / ESP32</li>
+            <li>IMU / GPS</li>
+            <li>LiDAR</li>
+            <li>RGB / Depth Cameras</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize AOS
-            AOS.init({ duration: 800, once: true });
+    <!-- Experience -->
+    <section id="experience" class="py-20">
+      <h2 class="section-title" data-aos="fade-up">Work Experience</h2>
+      <div class="max-w-4xl mx-auto" data-aos="fade-up">
+        <div class="card px-8 py-10">
+          <div class="flex flex-col sm:flex-row justify-between sm:items-start">
+            <div>
+              <h3 class="text-xl font-bold text-white">Hardware Development Intern</h3>
+              <p class="text-cyan-400">PicoStone Technologies, Mumbai, India</p>
+            </div>
+            <p class="text-gray-400 mt-2 sm:mt-0">Sep - Dec 2022</p>
+          </div>
+          <ul class="list-disc list-inside mt-4 space-y-2 text-sm">
+            <li>Developed firmware for smart home lights using ESP-IDF to control lights from a smartphone.</li>
+            <li>Designed PCB for a Wi-Fi-based LED light controller using KiCad to optimize for low-cost production.</li>
+            <li>Collaborated with a team of 4 to test and integrate smart lighting solutions, enhancing product reliability.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-            // Mobile menu toggle
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-            Array.from(mobileMenu.getElementsByTagName('a')).forEach(a=>{
-                a.addEventListener('click', ()=>mobileMenu.classList.add('hidden'));
-            });
+    <!-- Publication -->
+    <section id="publication" class="py-20">
+      <h2 class="section-title" data-aos="fade-up">Publication</h2>
+      <div class="max-w-4xl mx-auto card text-center px-8 py-10" data-aos="fade-up">
+        <p class="italic">"Design and Implementation of IoT Based Local Weather Station – An Experimental Setup"</p>
+        <p class="mt-2">N. Tandan et al., 2022 IEEE Bombay Section Signature Conference (IBSSC)</p>
+        <a href="https://ieeexplore.ieee.org/document/10037309" target="_blank" class="text-cyan-400 hover:underline mt-2 inline-block">View Publication</a>
+      </div>
+    </section>
 
-            // Typing animation for subtitle
-            new Typed('#typed-subtitle', {
-                strings: ["Master's Student in Robotics at Northeastern University", "Robotics Engineer", "Computer Vision Enthusiast"],
-                typeSpeed: 50,
-                backSpeed: 25,
-                loop: true,
-                smartBackspace: true,
-            });
+    <!-- Contact -->
+    <section id="contact" class="py-20 text-center">
+      <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
+      <p class="text-lg mb-4 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+        I'm always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious vision. Feel free to reach out.
+      </p>
+      <a href="mailto:raut.aks@northeastern.edu" class="text-2xl text-cyan-400 hover:underline" data-aos="fade-up" data-aos-delay="200">raut.aks@northeastern.edu</a>
+      <!-- Phone number removed per request -->
+    </section>
 
-            // Particles.js configuration
-            particlesJS('particles-js', {
-                "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-                    "color": { "value": "#ffffff" },
-                    "shape": { "type": "circle" },
-                    "opacity": { "value": 0.5, "random": false },
-                    "size": { "value": 3, "random": true },
-                    "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 },
-                    "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
-                },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": { "onhover": { "enable": true, "mode": "repulse" },
-                        "onclick": { "enable": true, "mode": "push" }, "resize": true },
-                    "modes": { "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 } }
-                },
-                "retina_detect": true
-            });
-        });
-    </script>
+  </main>
+
+  <footer class="bg-gray-800/50">
+    <div class="container mx-auto px-6 py-4 text-center text-gray-400">
+      <div class="flex justify-center space-x-6 mb-4">
+        <a href="https://www.linkedin.com/in/akshaj-raut/" target="_blank" class="text-2xl hover:text-cyan-400 transition-colors"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/akshajraut" target="_blank" class="text-2xl hover:text-cyan-400 transition-colors"><i class="fab fa-github"></i></a>
+      </div>
+      <p>&copy; 2025 Akshaj Raut. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // AOS
+      AOS.init({ duration: 800, once: true });
+
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+      [...mobileMenu.querySelectorAll('a')].forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+      // Typed subtitle
+      new Typed('#typed-subtitle', {
+        strings: ["Master's Student in Robotics at Northeastern University", "Robotics Engineer", "Computer Vision Enthusiast"],
+        typeSpeed: 50, backSpeed: 25, loop: true, smartBackspace: true,
+      });
+
+      // Particles
+      particlesJS('particles-js', {
+        particles:{ number:{ value:80, density:{ enable:true, value_area:800 }},
+          color:{ value:"#ffffff" }, shape:{ type:"circle" }, opacity:{ value:0.5 },
+          size:{ value:3, random:true }, line_linked:{ enable:true, distance:150, color:"#ffffff", opacity:0.4, width:1 },
+          move:{ enable:true, speed:2, out_mode:"out" } },
+        interactivity:{ detect_on:"canvas", events:{ onhover:{ enable:true, mode:"repulse" }, onclick:{ enable:true, mode:"push" }, resize:true },
+          modes:{ repulse:{ distance:100, duration:0.4 }, push:{ particles_nb:4 } } },
+        retina_detect:true
+      });
+
+      // More projects toggle
+      const btn = document.getElementById('toggle-more');
+      const grid = document.getElementById('more-projects');
+      btn.addEventListener('click', () => {
+        grid.classList.toggle('hidden');
+        btn.querySelector('span').textContent = grid.classList.contains('hidden') ? 'More Projects' : 'Show Less';
+      });
+    });
+  </script>
 </body>
 </html>
