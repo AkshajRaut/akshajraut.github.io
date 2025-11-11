@@ -16,49 +16,59 @@
             background-color: #0a192f;
             background-image: linear-gradient(180deg, #0a192f 0%, #112240 100%);
         }
+        /* section heading */
         .section-title {
-            @apply text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-violet-500;
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 700;   /* font-bold */
+            margin-bottom: 3rem;/* mb-12 */
+            text-align: center;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(to right, #22d3ee, #8b5cf6);
         }
+        /* base card look (kept simple CSS so it works without Tailwind build) */
         .card {
-            @apply bg-gray-800/50 backdrop-blur-sm rounded-2xl shadow-lg transition-all duration-300 transform hover:-translate-y-2;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(31,41,55,0.5);
+            backdrop-filter: blur(6px);
+            border-radius: 1rem; /* rounded-2xl */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
         }
-        /* MODIFICATION: Project Card Styling */
-        .project-card-link {
-            display: block;
-        }
+        /* project link container */
+        .project-card-link { display: block; }
+        /* ✅ icon spacing fix — reliable without Tailwind @apply */
         .link-icon {
-            /* Adjusted margin from mr-3 to mr-4 for more space */
-            @apply text-xl text-cyan-400 transition-colors duration-300 mr-4;
+            font-size: 1.25rem;
+            color: #22d3ee;
+            margin-right: 1rem; /* adds space between logo and text */
+            transition: color 0.3s ease;
+            flex: 0 0 auto;
         }
         .project-card:hover {
             box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
             border-color: rgba(139, 92, 246, 0.6);
         }
         .nav-link {
-             @apply hover:text-cyan-400 transition-colors relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-cyan-400 after:bottom-0 after:left-0 after:scale-x-0 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
+            position: relative;
+            transition: color .3s;
         }
+        .nav-link:hover { color: #22d3ee; }
+        .nav-link::after{
+            content:'';
+            position:absolute; left:0; bottom:0; height:2px; width:100%;
+            background:#22d3ee; transform:scaleX(0); transform-origin: 100% 100%;
+            transition: transform .3s;
+        }
+        .nav-link:hover::after{ transform: scaleX(1); transform-origin: 0 100%; }
         .tech-tag {
-            @apply inline-block bg-gray-700 text-gray-300 text-xs font-medium px-2.5 py-1 rounded-full;
+            display:inline-block; background:#374151; color:#d1d5db;
+            font-size:.75rem; font-weight:500; padding:.25rem .625rem; border-radius:9999px;
         }
-        /* Typing cursor effect */
-        .typed-cursor {
-            opacity: 1;
-            animation: blink 0.7s infinite;
-        }
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        }
+        .typed-cursor { opacity:1; animation: blink .7s infinite; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+        #particles-js { position:absolute; inset:0; width:100%; height:100%; z-index:-1; }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-300">
@@ -110,20 +120,21 @@
         </section>
 
         <section id="about" class="py-20">
-             <h2 class="section-title" data-aos="fade-up">About Me</h2>
-             <div class="max-w-4xl mx-auto text-center text-lg" data-aos="fade-up" data-aos-delay="100">
+            <h2 class="section-title" data-aos="fade-up">About Me</h2>
+            <div class="max-w-4xl mx-auto text-center text-lg" data-aos="fade-up" data-aos-delay="100">
                 <p class="mb-4">I'm currently pursuing my Master of Science in Robotics at Northeastern University, where I'm diving deep into mobile robotics, computer vision, and robot sensing. My goal is to develop innovative autonomous systems that can solve real-world problems.</p>
                 <p>With a Bachelor's degree in Electronics and Telecommunication and hands-on experience in both academic and professional settings, I've developed a strong skill set in hardware design, firmware development, and implementing complex algorithms for perception and navigation.</p>
-             </div>
+            </div>
         </section>
 
         <section id="projects" class="py-20">
             <h2 class="section-title" data-aos="fade-up">Academic Projects</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Existing projects -->
                 <a href="https://github.com/akshajraut" target="_blank" class="project-card-link" data-aos="fade-up">
                     <div class="card project-card flex flex-col px-8 py-10 h-full">
                         <div class="flex-grow">
-                            <h3 class="text-xl font-bold text-white flex items-center mb-1"> 
+                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
                                 <i class="fab fa-github link-icon"></i>
                                 Autonomous AI Drone
                             </h3>
@@ -138,6 +149,7 @@
                         </div>
                     </div>
                 </a>
+
                 <a href="https://youtu.be/cf-Sw53yA5E?si=Cjf-Ey51lNuXJp09" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="100">
                     <div class="card project-card flex flex-col px-8 py-10 h-full">
                         <div class="flex-grow">
@@ -148,14 +160,15 @@
                             <p class="text-cyan-400 text-sm mb-4">March - April 2025</p>
                             <p class="text-base">Developed a monocular SLAM pipeline in Python using 360° video. Leveraged OpenCV for sparse visual odometry to estimate camera trajectory and reconstruct a 3D map.</p>
                         </div>
-                         <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
+                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">OpenCV</span>
                             <span class="tech-tag">SLAM</span>
                         </div>
                     </div>
                 </a>
-                 <a href="https://youtu.be/AnZQ4tLCE10" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="200">
+
+                <a href="https://youtu.be/AnZQ4tLCE10" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="200">
                     <div class="card project-card flex flex-col px-8 py-10 h-full">
                         <div class="flex-grow">
                             <h3 class="text-xl font-bold text-white flex items-center mb-1">
@@ -165,7 +178,7 @@
                             <p class="text-cyan-400 text-sm mb-4">March - April 2025</p>
                             <p class="text-base">Built a full-stack surveillance system by fine-tuning a YOLOv8 model. Integrated Twilio API for automated SMS and call alerts upon detection.</p>
                         </div>
-                         <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
+                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">PyTorch</span>
                             <span class="tech-tag">YOLOv8</span>
@@ -173,6 +186,7 @@
                         </div>
                     </div>
                 </a>
+
                 <a href="https://youtu.be/rRnFcgB8jcc" target="_blank" class="project-card-link" data-aos="fade-up">
                     <div class="card project-card flex flex-col px-8 py-10 h-full">
                         <div class="flex-grow">
@@ -183,27 +197,221 @@
                             <p class="text-cyan-400 text-sm mb-4">November - December 2024</p>
                             <p class="text-base">Implemented an ORB-SLAM3 pipeline for robust, real-time SLAM on an autonomous vehicle using stereo and stereo-inertial data to create accurate 3D maps.</p>
                         </div>
-                         <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
+                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
                             <span class="tech-tag">C++</span>
                             <span class="tech-tag">ORB-SLAM3</span>
                             <span class="tech-tag">ROS</span>
                         </div>
                     </div>
                 </a>
+
                 <a href="https://github.com/AkshajRaut/LIDAR" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="100">
                     <div class="card project-card flex flex-col px-8 py-10 h-full">
                         <div class="flex-grow">
-                             <h3 class="text-xl font-bold text-white flex items-center mb-1">
+                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
                                 <i class="fab fa-github link-icon"></i>
                                 Low-Cost LIDAR Sensor
                             </h3>
                             <p class="text-cyan-400 text-sm mb-4">August - April 2023</p>
-                            <p class="text-base">Designed and implemented a low-cost LIDAR sensor for 2D mapping. Engineered a custom 3D-printed housing and integrated a time-of-flight sensor.</p>
+                            <p class="text-base">Designed and implemented a low-cost 2D LiDAR with custom 3D-printed housing and ToF sensing for mapping.</p>
                         </div>
-                         <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
+                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
                             <span class="tech-tag">Embedded C</span>
                             <span class="tech-tag">KiCad</span>
                             <span class="tech-tag">SolidWorks</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- New projects -->
+                <a href="https://github.com/AkshajRaut/opencv-realtime-filters" target="_blank" class="project-card-link" data-aos="fade-up">
+                    <div class="card project-card flex flex-col px-8 py-10 h-full">
+                        <div class="flex-grow">
+                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
+                                <i class="fab fa-github link-icon"></i>
+                                OpenCV Realtime Filters
+                            </h3>
+                            <p class="text-cyan-400 text-sm mb-4">Computer Vision</p>
+                            <p class="text-base">Implemented real-time image filters and effects with OpenCV, focusing on frame-rate friendly processing.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
+                            <span class="tech-tag">Python</span><span class="tech-tag">OpenCV</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://github.com/AkshajRaut/content-based-image-retrieval" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="50">
+                    <div class="card project-card flex flex-col px-8 py-10 h-full">
+                        <div class="flex-grow">
+                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
+                                <i class="fab fa-github link-icon"></i>
+                                Content-Based Image Retrieval
+                            </h3>
+                            <p class="text-cyan-400 text-sm mb-4">Vision Search</p>
+                            <p class="text-base">Built CBIR using handcrafted/global descriptors to return visually similar images from a dataset.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
+                            <span class="tech-tag">Python</span><span class="tech-tag">OpenCV</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://github.com/AkshajRaut/realtime-2d-object-detection" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card project-card flex flex-col px-8 py-10 h-full">
+                        <div class="flex-grow">
+                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
+                                <i class="fab fa-github link-icon"></i>
+                                Realtime 2D Object Detection
+                            </h3>
+                            <p class="text-cyan-400 text-sm mb-4">Detection</p>
+                            <p class="text-base">Trained and evaluated lightweight detectors for real-time inference on video streams.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
+                            <span class="tech-tag">PyTorch</span><span class="tech-tag">YOLO</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://github.com/AkshajRaut/camera-calibration-and-AR" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="150">
+                    <div class="card project-card flex flex-col px-8 py-10 h-full">
+                        <div class="flex-grow">
+                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
+                                <i class="fab fa-github link-icon"></i>
+                                Camera Calibration & AR
+                            </h3>
+                            <p class="text-cyan-400 text-sm mb-4">Calibration</p>
+                            <p class="text-base">Computed intrinsics/extrinsics and projected virtual objects into scenes for simple AR overlays.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
+                            <span class="tech-tag">OpenCV</span><span class="tech-tag">Python</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://github.com/AkshajRaut/deep-learning-recognition" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card project-card flex flex-col px-8 py-10 h-full">
+                        <div class="flex-grow">
+                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
+                                <i class="fab fa-github link-icon"></i>
+                                Deep Learning Recognition
+                            </h3>
+                            <p class="text-cyan-400 text-sm mb-4">Classification</p>
+                            <p class="text-base">Trained CNN-based image classifiers and benchmarked accuracy vs. runtime on common datasets.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
+                            <span class="tech-tag">PyTorch</span><span class="tech-tag">CNN</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://github.com/AkshajRaut/Automatic_Panoramic_Image_Mosaicing" target="_blank" class="project-card-link" data-aos="fade-up">
+                    <div class="card project-card flex flex-col px-8 py-10 h-full">
+                        <div class="flex-grow">
+                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
+                                <i class="fab fa-github link-icon"></i>
+                                Automatic Panoramic Image Mosaicing
+                            </h3>
+                            <p class="text-cyan-400 text-sm mb-4">Vision</p>
+                            <p class="text-base">Estimated homographies with RANSAC and blended seams to stitch panoramas automatically.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
+                            <span class="tech-tag">OpenCV</span><span class="tech-tag">RANSAC</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://github.com/AkshajRaut/Sensor-Fusion-of-GPS-and-IMU" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="50">
+                    <div class="card project-card flex flex-col px-8 py-10 h-full">
+                        <div class="flex-grow">
+                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
+                                <i class="fab fa-github link-icon"></i>
+                                Sensor Fusion of GPS & IMU
+                            </h3>
+                            <p class="text-cyan-400 text-sm mb-4">Estimation</p>
+                            <p class="text-base">Fused GNSS and IMU streams for smoother state estimates using filtering techniques.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
+                            <span class="tech-tag">Python</span><span class="tech-tag">EKF</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://github.com/AkshajRaut/Driver-for-GNSS-puck-GPGGA" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card project-card flex flex-col px-8 py-10 h-full">
+                        <div class="flex-grow">
+                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
+                                <i class="fab fa-github link-icon"></i>
+                                GNSS Puck Driver (GPGGA)
+                            </h3>
+                            <p class="text-cyan-400 text-sm mb-4">Embedded</p>
+                            <p class="text-base">Parsed NMEA GPGGA messages and exposed GPS fix/quality for downstream robotics apps.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
+                            <span class="tech-tag">Embedded C/C++</span><span class="tech-tag">NMEA</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://github.com/AkshajRaut/Driver-for-VectorNav-VN-100-IMU-VNYMR" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="150">
+                    <div class="card project-card flex flex-col px-8 py-10 h-full">
+                        <div class="flex-grow">
+                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
+                                <i class="fab fa-github link-icon"></i>
+                                VectorNav VN-100 IMU Driver (VNYMR)
+                            </h3>
+                            <p class="text-cyan-400 text-sm mb-4">Embedded</p>
+                            <p class="text-base">Streamed orientation and inertial data in VNYMR format with validation and timestamping.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
+                            <span class="tech-tag">C/C++</span><span class="tech-tag">IMU</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://github.com/AkshajRaut/WeatherStationVIT" target="_blank" class="project-card-link" data-aos="fade-up">
+                    <div class="card project-card flex flex-col px-8 py-10 h-full">
+                        <div class="flex-grow">
+                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
+                                <i class="fab fa-github link-icon"></i>
+                                Weather Station (IoT)
+                            </h3>
+                            <p class="text-cyan-400 text-sm mb-4">IoT</p>
+                            <p class="text-base">Logged environmental data from low-cost sensors and published to a cloud dashboard.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
+                            <span class="tech-tag">ESP32</span><span class="tech-tag">MQTT</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://github.com/AkshajRaut/HomeAutomation" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="50">
+                    <div class="card project-card flex flex-col px-8 py-10 h-full">
+                        <div class="flex-grow">
+                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
+                                <i class="fab fa-github link-icon"></i>
+                                Home Automation
+                            </h3>
+                            <p class="text-cyan-400 text-sm mb-4">Embedded / IoT</p>
+                            <p class="text-base">Controlled smart lights and relays via Wi-Fi with mobile integration and custom firmware.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
+                            <span class="tech-tag">ESP-IDF</span><span class="tech-tag">KiCad</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://github.com/AkshajRaut/RGBdisplay" target="_blank" class="project-card-link" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card project-card flex flex-col px-8 py-10 h-full">
+                        <div class="flex-grow">
+                            <h3 class="text-xl font-bold text-white flex items-center mb-1">
+                                <i class="fab fa-github link-icon"></i>
+                                RGB Display
+                            </h3>
+                            <p class="text-cyan-400 text-sm mb-4">Embedded</p>
+                            <p class="text-base">Drove an RGB LED matrix with custom timing and simple animation effects.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2">
+                            <span class="tech-tag">Embedded C</span><span class="tech-tag">GPIO</span>
                         </div>
                     </div>
                 </a>
@@ -217,14 +425,14 @@
                     <h3 class="text-xl font-bold text-white">Northeastern University</h3>
                     <p class="text-cyan-400">Boston, MA | May 2026</p>
                     <p class="mt-2">Master of Science in Robotics</p>
-                    <p class="text-sm text-gray-400">Concentration: Electrical and Computer Engineering</p>
-                    <p class="mt-4 text-sm"><strong>Relevant Coursework:</strong> Mobile Robotics, Computer Vision, Robot Sensing and Navigation, Mechanics and Control.</p>
+                    <p class="text-sm text-gray-400">Concentration: Electrical and Computer Engineering • GPA: 3.7/4</p>
+                    <p class="mt-4 text-sm"><strong>Relevant Coursework:</strong> Autonomous Field Robotics, Mobile Robotics, Computer Vision, Robot Sensing and Navigation.</p>
                 </div>
                 <div class="card px-8 py-10" data-aos="fade-left">
                     <h3 class="text-xl font-bold text-white">University of Mumbai</h3>
                     <p class="text-cyan-400">Mumbai, India | May 2023</p>
                     <p class="mt-2">Bachelor of Engineering in Electronics and Telecommunication</p>
-                     <p class="mt-4 text-sm"><strong>Relevant Coursework:</strong> Autonomous Vehicles, IOT and Industry 4.0, Wireless Networks.</p>
+                    <p class="mt-4 text-sm"><strong>Relevant Coursework:</strong> Autonomous Vehicles, IoT and Industry 4.0, Wireless Networks.</p>
                 </div>
             </div>
         </section>
@@ -235,16 +443,15 @@
                 <div class="card px-8 py-10" data-aos="fade-up">
                     <h3 class="text-xl font-semibold text-white mb-4"><i class="fas fa-code mr-2 text-cyan-400"></i>Languages & Frameworks</h3>
                     <ul class="space-y-2">
-                        <li>Python</li>
+                        <li>Python, C++, Embedded C</li>
                         <li>PyTorch</li>
                         <li>ROS2</li>
-                        <li>Embedded C / C++</li>
-                        <li>Dart</li>
-                        <li>Java</li>
+                        <li>OpenCV</li>
+                        <li>Dart, Java</li>
                     </ul>
                 </div>
                 <div class="card px-8 py-10" data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="text-xl font-semibold text-white mb-4"><i class="fas fa-tools mr-2 text-cyan-400"></i>Software</h3>
+                    <h3 class="text-xl font-semibold text-white mb-4"><i class="fas fa-tools mr-2 text-cyan-400"></i>Software & Tools</h3>
                     <ul class="space-y-2">
                         <li>SolidWorks</li>
                         <li>KiCad / EAGLE</li>
@@ -257,8 +464,8 @@
                     <ul class="space-y-2">
                         <li>Raspberry Pi / Arduino</li>
                         <li>ESP8266 / ESP32</li>
-                        <li>IMU / GPS</li>
-                        <li>LIDAR</li>
+                        <li>IMU / GPS / RGB-D Cameras</li>
+                        <li>LiDAR</li>
                     </ul>
                 </div>
             </div>
@@ -287,9 +494,9 @@
         <section id="publication" class="py-20">
             <h2 class="section-title" data-aos="fade-up">Publication</h2>
             <div class="max-w-4xl mx-auto card text-center px-8 py-10" data-aos="fade-up">
-                 <p class="italic">"Design and Implementation of IoT Based Local Weather Station An Experimental Setup"</p>
-                 <p class="mt-2">N. Tandan et al., 2022 IEEE Bombay Section Signature Conference (IBSSC)</p>
-                 <a href="https://doi.org/10.1109/IBSSC569ET3.2022.10037309" target="_blank" class="text-cyan-400 hover:underline mt-2 inline-block">View Publication</a>
+                <p class="italic">"Design and Implementation of IoT Based Local Weather Station – An Experimental Setup"</p>
+                <p class="mt-2">N. Tandan et al., 2022 IEEE Bombay Section Signature Conference (IBSSC)</p>
+                <a href="https://ieeexplore.ieee.org/document/10037309" target="_blank" class="text-cyan-400 hover:underline mt-2 inline-block">View Publication</a>
             </div>
         </section>
 
@@ -297,7 +504,7 @@
             <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
             <p class="text-lg mb-4 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">I'm always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious vision. Feel free to reach out.</p>
             <a href="mailto:raut.aks@northeastern.edu" class="text-2xl text-cyan-400 hover:underline" data-aos="fade-up" data-aos-delay="200">raut.aks@northeastern.edu</a>
-            <p class="mt-4" data-aos="fade-up" data-aos-delay="300">+1 (617) 331-6848</p>
+            <!-- Phone number removed as requested -->
         </section>
 
     </main>
@@ -305,13 +512,13 @@
     <footer class="bg-gray-800/50">
         <div class="container mx-auto px-6 py-4 text-center text-gray-400">
             <div class="flex justify-center space-x-6 mb-4">
-                 <a href="https://www.linkedin.com/in/akshaj-raut/" target="_blank" class="text-2xl hover:text-cyan-400 transition-colors"><i class="fab fa-linkedin"></i></a>
-                 <a href="https://github.com/akshajraut" target="_blank" class="text-2xl hover:text-cyan-400 transition-colors"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/akshaj-raut/" target="_blank" class="text-2xl hover:text-cyan-400 transition-colors"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/akshajraut" target="_blank" class="text-2xl hover:text-cyan-400 transition-colors"><i class="fab fa-github"></i></a>
             </div>
             <p>&copy; 2025 Akshaj Raut. All Rights Reserved.</p>
         </div>
     </footer>
-    
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -319,10 +526,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize AOS
-            AOS.init({
-                duration: 800,
-                once: true,
-            });
+            AOS.init({ duration: 800, once: true });
 
             // Mobile menu toggle
             const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -330,12 +534,9 @@
             mobileMenuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
-            const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
-            for (let i = 0; i < mobileMenuLinks.length; i++) {
-                mobileMenuLinks[i].addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                });
-            }
+            Array.from(mobileMenu.getElementsByTagName('a')).forEach(a=>{
+                a.addEventListener('click', ()=>mobileMenu.classList.add('hidden'));
+            });
 
             // Typing animation for subtitle
             new Typed('#typed-subtitle', {
@@ -348,67 +549,19 @@
 
             // Particles.js configuration
             particlesJS('particles-js', {
-                "particles": {
-                    "number": {
-                        "value": 80,
-                        "density": {
-                            "enable": true,
-                            "value_area": 800
-                        }
-                    },
-                    "color": {
-                        "value": "#ffffff"
-                    },
-                    "shape": {
-                        "type": "circle",
-                    },
-                    "opacity": {
-                        "value": 0.5,
-                        "random": false,
-                    },
-                    "size": {
-                        "value": 3,
-                        "random": true,
-                    },
-                    "line_linked": {
-                        "enable": true,
-                        "distance": 150,
-                        "color": "#ffffff",
-                        "opacity": 0.4,
-                        "width": 1
-                    },
-                    "move": {
-                        "enable": true,
-                        "speed": 2,
-                        "direction": "none",
-                        "random": false,
-                        "straight": false,
-                        "out_mode": "out",
-                        "bounce": false,
-                    }
+                "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                    "color": { "value": "#ffffff" },
+                    "shape": { "type": "circle" },
+                    "opacity": { "value": 0.5, "random": false },
+                    "size": { "value": 3, "random": true },
+                    "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 },
+                    "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
                 },
                 "interactivity": {
                     "detect_on": "canvas",
-                    "events": {
-                        "onhover": {
-                            "enable": true,
-                            "mode": "repulse"
-                        },
-                        "onclick": {
-                            "enable": true,
-                            "mode": "push"
-                        },
-                        "resize": true
-                    },
-                    "modes": {
-                        "repulse": {
-                            "distance": 100,
-                            "duration": 0.4
-                        },
-                        "push": {
-                            "particles_nb": 4
-                        },
-                    }
+                    "events": { "onhover": { "enable": true, "mode": "repulse" },
+                        "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                    "modes": { "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 } }
                 },
                 "retina_detect": true
             });
