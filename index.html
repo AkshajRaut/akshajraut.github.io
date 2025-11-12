@@ -15,9 +15,9 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
-  <!-- Favicon (tab logo): replace href with your file path (png/ico/svg) -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
-  <link rel="apple-touch-icon" href="favicon.png"/>
+  <!-- Favicon (drone icon) -->
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/1042/1042550.png" />
+  <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/1042/1042550.png" />
 
   <style>
     body {
@@ -59,7 +59,10 @@
   <!-- Header -->
   <header class="bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="#" class="text-2xl font-bold text-white">Akshaj Raut</a>
+      <a href="#" class="flex items-center gap-3 text-2xl font-bold text-white">
+        <img src="https://cdn-icons-png.flaticon.com/512/1042/1042550.png" alt="drone logo" class="h-10 w-10 mr-3 inline-block" />
+        <span>Akshaj Raut</span>
+      </a>
       <nav class="hidden md:flex space-x-8 text-lg">
         <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
         <a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a>
@@ -119,17 +122,54 @@
 
       <!-- Visible top 6 -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- 1 -->
-        <a href="https://github.com/akshajraut" target="_blank" class="block" data-aos="fade-up">
+        <!-- 1: 3D Sparse Reconstruction & Bundle Adjustment -->
+        <a href="https://github.com/AkshajRaut/sfm-buddha-3d-reconstruction" target="_blank" class="block" data-aos="fade-up">
           <div class="card project-card flex flex-col px-8 py-10 h-full">
             <div class="flex-grow">
-              <!-- Added gap between icon and text -->
+              <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-1">
+                <i class="fab fa-github text-xl text-cyan-400"></i>
+                <span>3D Sparse Reconstruction &amp; Bundle Adjustment</span>
+              </h3>
+              <p class="text-cyan-400 text-sm mb-4">October 2025 - Present</p>
+              <p class="text-base">Built an SfM pipeline over the Buddha dataset: matching, essential/fundamental matrix estimation, triangulation, and global bundle adjustment in GTSAM to jointly optimize poses and structure.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Python</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">OpenCV</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">GTSAM</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 2: Photomosaicing & Robust Image Registration -->
+        <a href="https://github.com/AkshajRaut/skerki-underwater-image-registration" target="_blank" class="block" data-aos="fade-up" data-aos-delay="100">
+          <div class="card project-card flex flex-col px-8 py-10 h-full">
+            <div class="flex-grow">
+              <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-1">
+                <i class="fab fa-github text-xl text-cyan-400"></i>
+                <span>Photomosaicing &amp; Robust Image Registration</span>
+              </h3>
+              <p class="text-cyan-400 text-sm mb-4">September - October 2025</p>
+              <p class="text-base">Engineered a robust image-registration pipeline for the Skerki Shipwreck dataset, using preprocessing, wide-baseline feature extraction, RANSAC homography estimation and Levenberg–Marquardt refinement to produce a globally-consistent photomosaic.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Python</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">OpenCV</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">GTSAM</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 3: Autonomous AI Drone -->
+        <a href="https://github.com/akshajraut" target="_blank" class="block" data-aos="fade-up" data-aos-delay="200">
+          <div class="card project-card flex flex-col px-8 py-10 h-full">
+            <div class="flex-grow">
               <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-1">
                 <i class="fab fa-github text-xl text-cyan-400"></i>
                 <span>Autonomous AI Drone</span>
               </h3>
               <p class="text-cyan-400 text-sm mb-4">May 2025 - Present</p>
-              <p class="text-base">Constructed a UAV with a Pixhawk PX4 and Raspberry Pi 4 for autonomous navigation using a custom EKF. Integrated LIDAR and a camera for object detection, with ongoing development of person-following and 3D reconstruction capabilities.</p>
+              <p class="text-base">Constructed a UAV using PX4 and Raspberry Pi 4 for autonomous GPS navigation with EKF-based sensor fusion. Integrated TF-Luna TOF LiDAR and RGB camera for detection and obstacle avoidance; ongoing work on person-following and 3D reconstruction.</p>
             </div>
             <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
               <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Python</span>
@@ -140,8 +180,8 @@
           </div>
         </a>
 
-        <!-- 2 -->
-        <a href="https://youtu.be/cf-Sw53yA5E?si=Cjf-Ey51lNuXJp09" target="_blank" class="block" data-aos="fade-up" data-aos-delay="100">
+        <!-- 4: Omnidirectional Dense SLAM -->
+        <a href="https://youtu.be/cf-Sw53yA5E?si=Cjf-Ey51lNuXJp09" target="_blank" class="block" data-aos="fade-up">
           <div class="card project-card flex flex-col px-8 py-10 h-full">
             <div class="flex-grow">
               <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-1">
@@ -149,7 +189,7 @@
                 <span>Omnidirectional Dense SLAM</span>
               </h3>
               <p class="text-cyan-400 text-sm mb-4">March - April 2025</p>
-              <p class="text-base">Developed a monocular SLAM pipeline in Python using 360° video. Leveraged OpenCV for sparse visual odometry to estimate camera trajectory and reconstruct a 3D map.</p>
+              <p class="text-base">Developed a monocular SLAM pipeline in Python using 360° video with OpenCV for sparse visual odometry to estimate camera trajectory and reconstruct a sparse 3D map.</p>
             </div>
             <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
               <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Python</span>
@@ -159,8 +199,8 @@
           </div>
         </a>
 
-        <!-- 3 -->
-        <a href="https://youtu.be/AnZQ4tLCE10" target="_blank" class="block" data-aos="fade-up" data-aos-delay="200">
+        <!-- 5: Live Firearm Detection System -->
+        <a href="https://youtu.be/AnZQ4tLCE10" target="_blank" class="block" data-aos="fade-up">
           <div class="card project-card flex flex-col px-8 py-10 h-full">
             <div class="flex-grow">
               <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-1">
@@ -179,7 +219,7 @@
           </div>
         </a>
 
-        <!-- 4 -->
+        <!-- 6: ORB-SLAM3 on Autonomous Car -->
         <a href="https://youtu.be/rRnFcgB8jcc" target="_blank" class="block" data-aos="fade-up">
           <div class="card project-card flex flex-col px-8 py-10 h-full">
             <div class="flex-grow">
@@ -188,50 +228,12 @@
                 <span>ORB-SLAM3 on Autonomous Car</span>
               </h3>
               <p class="text-cyan-400 text-sm mb-4">November - December 2024</p>
-              <p class="text-base">Implemented an ORB-SLAM3 pipeline for real-time SLAM on an autonomous vehicle using stereo and stereo-inertial data to create accurate 3D maps.</p>
+              <p class="text-base">Implemented an ORB-SLAM3 pipeline for robust, real-time SLAM on an autonomous vehicle using stereo and stereo-inertial data to create accurate 3D maps.</p>
             </div>
             <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
               <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">C++</span>
               <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">ORB-SLAM3</span>
               <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">ROS</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- 5 -->
-        <a href="https://github.com/AkshajRaut/LIDAR" target="_blank" class="block" data-aos="fade-up" data-aos-delay="100">
-          <div class="card project-card flex flex-col px-8 py-10 h-full">
-            <div class="flex-grow">
-              <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-1">
-                <i class="fab fa-github text-xl text-cyan-400"></i>
-                <span>Low-Cost LIDAR Sensor</span>
-              </h3>
-              <p class="text-cyan-400 text-sm mb-4">August - April 2023</p>
-              <p class="text-base">Designed and implemented a low-cost LIDAR sensor for 2D mapping. Engineered a custom 3D-printed housing and integrated a time-of-flight sensor.</p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
-              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Embedded C</span>
-              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">KiCad</span>
-              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">SolidWorks</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- 6 (added from resume) -->
-        <a href="https://github.com/AkshajRaut/sfm-buddha-3d-reconstruction" target="_blank" class="block" data-aos="fade-up" data-aos-delay="200">
-          <div class="card project-card flex flex-col px-8 py-10 h-full">
-            <div class="flex-grow">
-              <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-1">
-                <i class="fab fa-github text-xl text-cyan-400"></i>
-                <span>3D Sparse Reconstruction & Bundle Adjustment</span>
-              </h3>
-              <p class="text-cyan-400 text-sm mb-4">October 2025 - Present</p>
-              <p class="text-base">Built an SfM pipeline over the Buddha dataset: matching, F/E estimation, triangulation, and global bundle adjustment in GTSAM to jointly optimize poses and structure.</p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
-              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Python</span>
-              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">OpenCV</span>
-              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">GTSAM</span>
             </div>
           </div>
         </a>
@@ -247,103 +249,159 @@
 
       <!-- Hidden more projects grid -->
       <div id="more-projects" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 hidden">
-        <!-- Batch 1 -->
+        <!-- OpenCV Realtime Filters -->
         <a class="block" href="https://github.com/AkshajRaut/opencv-realtime-filters" target="_blank">
-          <div class="card project-card px-8 py-8 h-full">
-            <h3 class="text-lg font-semibold text-white flex items-center gap-3 mb-2">
-              <i class="fab fa-github text-cyan-400"></i><span>OpenCV Realtime Filters</span>
-            </h3>
-            <p class="text-sm text-gray-300">Realtime image filters with OpenCV.</p>
-          </div>
-        </a>
-        <a class="block" href="https://github.com/AkshajRaut/content-based-image-retrieval" target="_blank">
-          <div class="card project-card px-8 py-8 h-full">
-            <h3 class="text-lg font-semibold text-white flex items-center gap-3 mb-2">
-              <i class="fab fa-github text-cyan-400"></i><span>Content-Based Image Retrieval</span>
-            </h3>
-            <p class="text-sm text-gray-300">CBIR using feature descriptors/similarity.</p>
-          </div>
-        </a>
-        <a class="block" href="https://github.com/AkshajRaut/realtime-2d-object-detection" target="_blank">
-          <div class="card project-card px-8 py-8 h-full">
-            <h3 class="text-lg font-semibold text-white flex items-center gap-3 mb-2">
-              <i class="fab fa-github text-cyan-400"></i><span>Realtime 2D Object Detection</span>
-            </h3>
-            <p class="text-sm text-gray-300">Live detection pipeline.</p>
-          </div>
-        </a>
-        <a class="block" href="https://github.com/AkshajRaut/camera-calibration-and-AR" target="_blank">
-          <div class="card project-card px-8 py-8 h-full">
-            <h3 class="text-lg font-semibold text-white flex items-center gap-3 mb-2">
-              <i class="fab fa-github text-cyan-400"></i><span>Camera Calibration & AR</span>
-            </h3>
-            <p class="text-sm text-gray-300">Calibration and simple AR overlays.</p>
-          </div>
-        </a>
-        <a class="block" href="https://github.com/AkshajRaut/deep-learning-recognition" target="_blank">
-          <div class="card project-card px-8 py-8 h-full">
-            <h3 class="text-lg font-semibold text-white flex items-center gap-3 mb-2">
-              <i class="fab fa-github text-cyan-400"></i><span>Deep Learning Recognition</span>
-            </h3>
-            <p class="text-sm text-gray-300">DL classifiers/recognition tasks.</p>
+          <div class="card project-card px-8 py-10 h-full">
+            <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-2"><i class="fab fa-github text-cyan-400"></i><span>OpenCV Real-Time Filters</span></h3>
+            <p class="text-base text-gray-300">Implemented a suite of real-time image and video filters using OpenCV that can be applied to live camera feeds. Includes color adjustments, edge-preserving smoothing, and custom convolution kernels with an efficient frame pipeline to maintain high FPS on commodity hardware.</p>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Python</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">OpenCV</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Realtime</span>
+            </div>
           </div>
         </a>
 
-        <!-- Batch 2 -->
+        <!-- Content-Based Image Retrieval -->
+        <a class="block" href="https://github.com/AkshajRaut/content-based-image-retrieval" target="_blank">
+          <div class="card project-card px-8 py-10 h-full">
+            <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-2"><i class="fab fa-github text-cyan-400"></i><span>Content-Based Image Retrieval</span></h3>
+            <p class="text-base text-gray-300">Built a CBIR system that indexes images using color histograms, SIFT descriptors and aggregated feature vectors. The system supports nearest-neighbor search with cosine similarity and includes a simple web UI for querying similar images from a dataset.</p>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Python</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">SIFT</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Feature Matching</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Realtime 2D Object Detection -->
+        <a class="block" href="https://github.com/AkshajRaut/realtime-2d-object-detection" target="_blank">
+          <div class="card project-card px-8 py-10 h-full">
+            <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-2"><i class="fab fa-github text-cyan-400"></i><span>Realtime 2D Object Detection</span></h3>
+            <p class="text-base text-gray-300">Developed a low-latency 2D object detection pipeline for live camera feeds using optimized model inference and asynchronous frame handling. Focused on deployment efficiency to run on edge devices while maintaining high detection accuracy and low false-positive rates.</p>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">PyTorch</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">OpenCV</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Realtime</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Camera Calibration & AR -->
+        <a class="block" href="https://github.com/AkshajRaut/camera-calibration-and-AR" target="_blank">
+          <div class="card project-card px-8 py-10 h-full">
+            <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-2"><i class="fab fa-github text-cyan-400"></i><span>Camera Calibration &amp; AR</span></h3>
+            <p class="text-base text-gray-300">Implemented camera calibration routines and a basic AR demo that overlays 3D objects using recovered intrinsic and extrinsic parameters. Includes automated chessboard detection, distortion correction, and pose estimation for robust virtual object placement.</p>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">OpenCV</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Pose Estimation</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">AR</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Deep Learning Recognition -->
+        <a class="block" href="https://github.com/AkshajRaut/deep-learning-recognition" target="_blank">
+          <div class="card project-card px-8 py-10 h-full">
+            <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-2"><i class="fab fa-github text-cyan-400"></i><span>Deep Learning Recognition</span></h3>
+            <p class="text-base text-gray-300">Trained and evaluated convolutional neural networks for image classification and recognition tasks. The repo includes data preprocessing pipelines, training scripts, and model evaluation metrics demonstrating improvements over baseline models.</p>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">PyTorch</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">CNN</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Training</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Driver for GNSS puck (GPGGA) -->
         <a class="block" href="https://github.com/AkshajRaut/Driver-for-GNSS-puck-GPGGA" target="_blank">
-          <div class="card project-card px-8 py-8 h-full">
-            <h3 class="text-lg font-semibold text-white flex items-center gap-3 mb-2">
-              <i class="fab fa-github text-cyan-400"></i><span>Driver for GNSS puck (GPGGA)</span>
-            </h3>
-            <p class="text-sm text-gray-300">Parsing GNSS NMEA GPGGA.</p>
+          <div class="card project-card px-8 py-10 h-full">
+            <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-2"><i class="fab fa-github text-cyan-400"></i><span>Driver for GNSS puck (GPGGA)</span></h3>
+            <p class="text-base text-gray-300">Designed a parser and driver for GNSS puck modules that extracts GPGGA NMEA sentences and converts them into structured position and time messages. The project includes buffering, checksum validation, and a simple API for downstream navigation modules.</p>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">C/C++</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">GNSS</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">NMEA</span>
+            </div>
           </div>
         </a>
+
+        <!-- Automatic Panoramic Image Mosaicing -->
         <a class="block" href="https://github.com/AkshajRaut/Automatic_Panoramic_Image_Mosaicing" target="_blank">
-          <div class="card project-card px-8 py-8 h-full">
-            <h3 class="text-lg font-semibold text-white flex items-center gap-3 mb-2">
-              <i class="fab fa-github text-cyan-400"></i><span>Automatic Panoramic Mosaicing</span>
-            </h3>
-            <p class="text-sm text-gray-300">Homographies + blending.</p>
+          <div class="card project-card px-8 py-10 h-full">
+            <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-2"><i class="fab fa-github text-cyan-400"></i><span>Automatic Panoramic Mosaicing</span></h3>
+            <p class="text-base text-gray-300">Implemented a full panoramic mosaicing pipeline that detects correspondences, estimates homographies with RANSAC and blends warped images to generate smooth panoramas. Emphasis was placed on seam-finding and color-consistency across frames.</p>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Python</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">OpenCV</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Image Stitching</span>
+            </div>
           </div>
         </a>
+
+        <!-- Sensor Fusion: GPS + IMU -->
         <a class="block" href="https://github.com/AkshajRaut/Sensor-Fusion-of-GPS-and-IMU" target="_blank">
-          <div class="card project-card px-8 py-8 h-full">
-            <h3 class="text-lg font-semibold text-white flex items-center gap-3 mb-2">
-              <i class="fab fa-github text-cyan-400"></i><span>Sensor Fusion: GPS + IMU</span>
-            </h3>
-            <p class="text-sm text-gray-300">Fusion for robust localization.</p>
+          <div class="card project-card px-8 py-10 h-full">
+            <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-2"><i class="fab fa-github text-cyan-400"></i><span>Sensor Fusion: GPS + IMU</span></h3>
+            <p class="text-base text-gray-300">Developed sensor fusion algorithms combining GPS fixes and IMU inertial measurements using Kalman filters to provide smoother and more reliable localization. The work includes time-synchronization routines and evaluation against ground truth trajectories.</p>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Python</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Kalman Filter</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Localization</span>
+            </div>
           </div>
         </a>
+
+        <!-- VectorNav VN-100 IMU Driver (VNYMR) -->
         <a class="block" href="https://github.com/AkshajRaut/Driver-for-VectorNav-VN-100-IMU-VNYMR" target="_blank">
-          <div class="card project-card px-8 py-8 h-full">
-            <h3 class="text-lg font-semibold text-white flex items-center gap-3 mb-2">
-              <i class="fab fa-github text-cyan-400"></i><span>VectorNav VN-100 IMU Driver (VNYMR)</span>
-            </h3>
-            <p class="text-sm text-gray-300">Serial parsing & packets.</p>
+          <div class="card project-card px-8 py-10 h-full">
+            <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-2"><i class="fab fa-github text-cyan-400"></i><span>VectorNav VN-100 IMU Driver (VNYMR)</span></h3>
+            <p class="text-base text-gray-300">Created a robust serial driver to communicate with the VectorNav VN-100 IMU, parsing VNYMR packets and exposing calibrated orientation and magnetometer data. Includes packet framing, CRC checks, and simple integration examples for downstream state estimation.</p>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">C/C++</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">IMU</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Serial</span>
+            </div>
           </div>
         </a>
+
+        <!-- Weather Station VIT -->
         <a class="block" href="https://github.com/AkshajRaut/WeatherStationVIT" target="_blank">
-          <div class="card project-card px-8 py-8 h-full">
-            <h3 class="text-lg font-semibold text-white flex items-center gap-3 mb-2">
-              <i class="fab fa-github text-cyan-400"></i><span>Weather Station (VIT)</span>
-            </h3>
-            <p class="text-sm text-gray-300">IoT-based sensing and logging.</p>
+          <div class="card project-card px-8 py-10 h-full">
+            <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-2"><i class="fab fa-github text-cyan-400"></i><span>Weather Station (VIT)</span></h3>
+            <p class="text-base text-gray-300">Built an IoT weather station that reads multiple environmental sensors, logs data to a cloud backend and provides a dashboard for visualizing trends. Focused on low-power sensing and reliable connectivity using ESP-based microcontrollers.</p>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Embedded C</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">ESP32</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">IoT</span>
+            </div>
           </div>
         </a>
+
+        <!-- Home Automation -->
         <a class="block" href="https://github.com/AkshajRaut/HomeAutomation" target="_blank">
-          <div class="card project-card px-8 py-8 h-full">
-            <h3 class="text-lg font-semibold text-white flex items-center gap-3 mb-2">
-              <i class="fab fa-github text-cyan-400"></i><span>Home Automation</span>
-            </h3>
-            <p class="text-sm text-gray-300">ESP-based smart home control.</p>
+          <div class="card project-card px-8 py-10 h-full">
+            <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-2"><i class="fab fa-github text-cyan-400"></i><span>Home Automation</span></h3>
+            <p class="text-base text-gray-300">Implemented ESP-based smart home solutions including Wi-Fi-controlled lighting and sensor integration. Provided mobile control interfaces and prioritized secure OTA updates for deployed devices.</p>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">ESP-IDF</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Embedded</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">IoT</span>
+            </div>
           </div>
         </a>
+
+        <!-- RGB Display -->
         <a class="block" href="https://github.com/AkshajRaut/RGBdisplay" target="_blank">
-          <div class="card project-card px-8 py-8 h-full">
-            <h3 class="text-lg font-semibold text-white flex items-center gap-3 mb-2">
-              <i class="fab fa-github text-cyan-400"></i><span>RGB Display</span>
-            </h3>
-            <p class="text-sm text-gray-300">Embedded LED matrix driver.</p>
+          <div class="card project-card px-8 py-10 h-full">
+            <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-2"><i class="fab fa-github text-cyan-400"></i><span>RGB Display</span></h3>
+            <p class="text-base text-gray-300">Developed firmware and drivers for an RGB LED matrix display, enabling custom animations and text rendering. Optimized DMA transfers and frame buffering to achieve smooth animations on constrained microcontrollers.</p>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Embedded C</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">LED Matrix</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Firmware</span>
+            </div>
           </div>
         </a>
       </div>
