@@ -122,6 +122,43 @@
 
       <!-- Visible top 6 -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Drone Racing Trajectory Optimization -->
+        <a href="https://github.com/AkshajRaut/drone-racing-trajectory-optimization" target="_blank" class="block" data-aos="fade-up">
+          <div class="card project-card flex flex-col px-8 py-10 h-full">
+            <div class="flex-grow">
+              <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-1">
+                <i class="fab fa-github text-xl text-cyan-400"></i>
+                <span>Drone Racing Trajectory Optimization</span>
+              </h3>
+              <p class="text-cyan-400 text-sm mb-4">Motion Planning</p>
+              <p class="text-base">Designed an RRT-based global planner to generate collision-free racing paths through gated obstacle courses. Performed nonlinear trajectory optimization minimizing traversal time and curvature with spline-based constraints on position, velocity, and acceleration for dynamically feasible quadrotor flight.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">RRT</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Trajectory Optimization</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Quadrotor</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- LiDAR-based SLAM with ICP & Pose Graph Optimization -->
+        <a href="https://github.com/AkshajRaut/lidar-slam-icp" target="_blank" class="block" data-aos="fade-up" data-aos-delay="100">
+          <div class="card project-card flex flex-col px-8 py-10 h-full">
+            <div class="flex-grow">
+              <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-1">
+                <i class="fab fa-github text-xl text-cyan-400"></i>
+                <span>LiDAR-based SLAM with ICP &amp; Pose Graph Optimization</span>
+              </h3>
+              <p class="text-cyan-400 text-sm mb-4">Mapping & Localization</p>
+              <p class="text-base">Implemented a LiDAR-only SLAM system using sequential point clouds with voxel-grid downsampling and real-time ICP. Optimized a pose graph to generate a globally consistent 3D map and 2D occupancy grid over a 100m × 200m environment.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">LiDAR</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">ICP</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Pose Graph</span>
+            </div>
+          </div>
+        </a>
         <!-- 1: 3D Sparse Reconstruction & Bundle Adjustment -->
         <a href="https://github.com/AkshajRaut/sfm-buddha-3d-reconstruction" target="_blank" class="block" data-aos="fade-up">
           <div class="card project-card flex flex-col px-8 py-10 h-full">
@@ -180,24 +217,6 @@
           </div>
         </a>
 
-        <!-- 4: Omnidirectional Dense SLAM -->
-        <a href="https://youtu.be/cf-Sw53yA5E?si=Cjf-Ey51lNuXJp09" target="_blank" class="block" data-aos="fade-up">
-          <div class="card project-card flex flex-col px-8 py-10 h-full">
-            <div class="flex-grow">
-              <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-1">
-                <i class="fab fa-youtube text-xl text-red-500"></i>
-                <span>Omnidirectional Dense SLAM</span>
-              </h3>
-              <p class="text-cyan-400 text-sm mb-4">March - April 2025</p>
-              <p class="text-base">Developed a monocular SLAM pipeline in Python using 360° video with OpenCV for sparse visual odometry to estimate camera trajectory and reconstruct a sparse 3D map.</p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
-              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Python</span>
-              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">OpenCV</span>
-              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">SLAM</span>
-            </div>
-          </div>
-        </a>
 
         <!-- 5: Live Firearm Detection System -->
         <a href="https://youtu.be/AnZQ4tLCE10" target="_blank" class="block" data-aos="fade-up">
@@ -219,24 +238,6 @@
           </div>
         </a>
 
-        <!-- 6: ORB-SLAM3 on Autonomous Car -->
-        <a href="https://youtu.be/rRnFcgB8jcc" target="_blank" class="block" data-aos="fade-up">
-          <div class="card project-card flex flex-col px-8 py-10 h-full">
-            <div class="flex-grow">
-              <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-1">
-                <i class="fab fa-youtube text-xl text-red-500"></i>
-                <span>ORB-SLAM3 on Autonomous Car</span>
-              </h3>
-              <p class="text-cyan-400 text-sm mb-4">November - December 2024</p>
-              <p class="text-base">Implemented an ORB-SLAM3 pipeline for robust, real-time SLAM on an autonomous vehicle using stereo and stereo-inertial data to create accurate 3D maps.</p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
-              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">C++</span>
-              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">ORB-SLAM3</span>
-              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">ROS</span>
-            </div>
-          </div>
-        </a>
       </div>
 
       <!-- More Projects Toggle -->
@@ -414,15 +415,16 @@
         <div class="card px-8 py-10" data-aos="fade-right">
           <h3 class="text-xl font-bold text-white">Northeastern University</h3>
           <p class="text-cyan-400">Boston, MA | May 2026</p>
-          <p class="mt-2">Master of Science in Robotics</p>
-          <p class="text-sm text-gray-400">Concentration: Electrical and Computer Engineering</p>
-          <p class="mt-4 text-sm"><strong>Coursework:</strong> Autonomous Field Robotics, Mobile Robotics, Computer Vision, Robot Sensing and Navigation, Robotic Science and Systems.</p>
+          <p class="mt-2 font-medium">Master of Science in Robotics</p>
+          <p class="text-sm text-gray-400">Concentration: Electrical &amp; Computer Engineering</p>
+          <p class="mt-6 text-sm"><strong>Coursework:</strong> Autonomous Field Robotics, Mobile Robotics, Computer Vision, Robot Sensing and Navigation, Robotic Science and Systems.</p>
         </div>
         <div class="card px-8 py-10" data-aos="fade-left">
           <h3 class="text-xl font-bold text-white">University of Mumbai</h3>
           <p class="text-cyan-400">Mumbai, India | May 2023</p>
-          <p class="mt-2">Bachelor of Engineering in Electronics and Telecommunication</p>
-          <p class="mt-4 text-sm"><strong>Coursework:</strong> Autonomous Vehicles, IoT & Industry 4.0, Wireless Networks.</p>
+          <p class="mt-2 font-medium">Bachelor of Engineering</p>
+          <p class="text-sm text-gray-400">Electronics &amp; Telecommunication Engineering</p>
+          <p class="mt-6 text-sm"><strong>Coursework:</strong> Autonomous Vehicles, IoT & Industry 4.0, Wireless Networks.</p>
         </div>
       </div>
     </section>
@@ -438,6 +440,7 @@
             <li>C++ / Embedded C</li>
             <li>PyTorch</li>
             <li>ROS2</li>
+            <li>CUDA</li>
             <li>Dart</li>
             <li>Java</li>
           </ul>
@@ -445,21 +448,24 @@
         <div class="card px-8 py-10" data-aos="fade-up" data-aos-delay="100">
           <h3 class="text-xl font-semibold text-white mb-4"><i class="fas fa-tools mr-2 text-cyan-400"></i>Software</h3>
           <ul class="space-y-2">
+            <li>OpenCV</li>
+            <li>GTSAM</li>
+            <li>NVIDIA Isaac Sim</li>
+            <li>MATLAB / Simulink</li>
             <li>SolidWorks</li>
             <li>KiCad / EAGLE</li>
-            <li>MATLAB / LabVIEW</li>
-            <li>OpenCV</li>
             <li>Git / GitHub / GitLab</li>
           </ul>
         </div>
         <div class="card px-8 py-10" data-aos="fade-up" data-aos-delay="200">
           <h3 class="text-xl font-semibold text-white mb-4"><i class="fas fa-microchip mr-2 text-cyan-400"></i>Hardware & Sensors</h3>
           <ul class="space-y-2">
+            <li>LiDAR (2D / 3D)</li>
+            <li>RGB & Depth Cameras</li>
+            <li>IMU / GPS / GNSS</li>
             <li>Raspberry Pi / Arduino</li>
-            <li>ESP8266 / ESP32</li>
-            <li>IMU / GPS</li>
-            <li>LiDAR</li>
-            <li>RGB / Depth Cameras</li>
+            <li>ESP32 / ESP8266</li>
+            <li>PX4 / Pixhawk</li>
           </ul>
         </div>
       </div>
@@ -478,9 +484,9 @@
             <p class="text-gray-400 mt-2 sm:mt-0">Sep - Dec 2022</p>
           </div>
           <ul class="list-disc list-inside mt-4 space-y-2 text-sm">
-            <li>Developed firmware for smart home lights using ESP-IDF to control lights from a smartphone.</li>
-            <li>Designed PCB for a Wi-Fi-based LED light controller using KiCad to optimize for low-cost production.</li>
-            <li>Collaborated with a team of 4 to test and integrate smart lighting solutions, enhancing product reliability.</li>
+            <li>Developed firmware for smart home lighting systems using ESP-IDF, optimized for stable Wi‑Fi connectivity with sub‑200 ms response latency.</li>
+            <li>Designed a Wi‑Fi LED controller PCB in KiCad, reducing board area by 20% and lowering manufacturing cost by 10%.</li>
+            <li>Collaborated with a 4‑member hardware team to test, integrate, and validate smart lighting solutions, improving overall product reliability.</li>
           </ul>
         </div>
       </div>
