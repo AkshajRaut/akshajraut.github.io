@@ -122,6 +122,46 @@
 
       <!-- Visible top 6 -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- VR Teleoperation and Demonstration Collection using Open-Teach -->
+        <a href="#" target="_blank" class="block" data-aos="fade-up">
+          <div class="card project-card flex flex-col px-8 py-10 h-full">
+            <div class="flex-grow">
+              <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-1">
+                <i class="fas fa-vr-cardboard text-xl text-cyan-400"></i>
+                <span>VR Teleoperation & Demonstration Collection</span>
+              </h3>
+              <p class="text-cyan-400 text-sm mb-4">February 2026 - Present</p>
+              <p class="text-base">Deployed and debugged the Open‑Teach VR teleoperation framework with Isaac Gym Preview 4 and Meta Quest 3 for robotic hand and arm manipulation. Enabled 23‑DoF control of a simulated Franka arm and Allegro hand using 21‑keypoint 3D hand skeleton tracking and implemented a synchronized multi‑process demonstration recording pipeline capturing RGB, depth, joint states and actions for imitation learning.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Isaac Gym</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Open‑Teach</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">VR Teleoperation</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Imitation Learning</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Gaussian Splatting 3D Scene Reconstruction -->
+        <a href="https://github.com/AkshajRaut/featureless-scene-3d-reconstruction" target="_blank" class="block" data-aos="fade-up" data-aos-delay="100">
+          <div class="card project-card flex flex-col px-8 py-10 h-full">
+            <div class="flex-grow">
+              <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-1">
+                <i class="fab fa-github text-xl text-cyan-400"></i>
+                <span>Gaussian Splatting & LiDAR-based 3D Scene Reconstruction</span>
+              </h3>
+              <p class="text-cyan-400 text-sm mb-4">January 2026 - Present</p>
+              <p class="text-base">Captured a 1658‑image low‑texture indoor dataset and analyzed failure modes of COLMAP feature matching in featureless environments causing unstable camera pose estimation in Gaussian Splatting pipelines. Replaced failed SfM pose recovery with ARKit camera poses and LiDAR depth exported from Polycam using visual‑inertial tracking. Implemented TSDF fusion using Open3D ScalableTSDFVolume to reconstruct a 2 cm voxel resolution corridor mesh (~795K vertices) capturing walls, floor and ceiling in a featureless environment.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Gaussian Splatting</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Nerfstudio</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Open3D</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">LiDAR</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">TSDF Fusion</span>
+            </div>
+          </div>
+        </a>
         <!-- Drone Racing Trajectory Optimization -->
         <a href="https://github.com/AkshajRaut/drone-racing-trajectory-optimization" target="_blank" class="block" data-aos="fade-up">
           <div class="card project-card flex flex-col px-8 py-10 h-full">
@@ -130,7 +170,7 @@
                 <i class="fab fa-github text-xl text-cyan-400"></i>
                 <span>Drone Racing Trajectory Optimization</span>
               </h3>
-              <p class="text-cyan-400 text-sm mb-4">Motion Planning</p>
+              <p class="text-cyan-400 text-sm mb-4">November - December 2025</p>
               <p class="text-base">Designed an RRT-based global planner to generate collision-free racing paths through gated obstacle courses. Performed nonlinear trajectory optimization minimizing traversal time and curvature with spline-based constraints on position, velocity, and acceleration for dynamically feasible quadrotor flight.</p>
             </div>
             <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
@@ -149,7 +189,7 @@
                 <i class="fab fa-github text-xl text-cyan-400"></i>
                 <span>LiDAR-based SLAM with ICP &amp; Pose Graph Optimization</span>
               </h3>
-              <p class="text-cyan-400 text-sm mb-4">Mapping & Localization</p>
+              <p class="text-cyan-400 text-sm mb-4">November - December 2025</p>
               <p class="text-base">Implemented a LiDAR-only SLAM system using sequential point clouds with voxel-grid downsampling and real-time ICP. Optimized a pose graph to generate a globally consistent 3D map and 2D occupancy grid over a 100m × 200m environment.</p>
             </div>
             <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
@@ -167,7 +207,7 @@
                 <i class="fab fa-github text-xl text-cyan-400"></i>
                 <span>3D Sparse Reconstruction &amp; Bundle Adjustment</span>
               </h3>
-              <p class="text-cyan-400 text-sm mb-4">October 2025 - Present</p>
+              <p class="text-cyan-400 text-sm mb-4">October - December 2025</p>
               <p class="text-base">Built an SfM pipeline over the Buddha dataset: matching, essential/fundamental matrix estimation, triangulation, and global bundle adjustment in GTSAM to jointly optimize poses and structure.</p>
             </div>
             <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
@@ -205,7 +245,7 @@
                 <i class="fab fa-youtube text-xl text-red-500"></i>
                 <span>Autonomous AI Drone</span>
               </h3>
-              <p class="text-cyan-400 text-sm mb-4">May 2025 - Present</p>
+              <p class="text-cyan-400 text-sm mb-4">May - August 2025</p>
               <p class="text-base">Constructed a UAV using PX4 and Raspberry Pi 4 for autonomous GPS navigation with EKF-based sensor fusion. Integrated TF-Luna TOF LiDAR and RGB camera for detection and obstacle avoidance; ongoing work on person-following and 3D reconstruction.</p>
             </div>
             <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
@@ -443,6 +483,8 @@
             <li>CUDA</li>
             <li>Dart</li>
             <li>Java</li>
+            <li>RRT</li>
+            <li>ICP</li>
           </ul>
         </div>
         <div class="card px-8 py-10" data-aos="fade-up" data-aos-delay="100">
@@ -451,6 +493,12 @@
             <li>OpenCV</li>
             <li>GTSAM</li>
             <li>NVIDIA Isaac Sim</li>
+            <li>Isaac Gym</li>
+            <li>Nerfstudio</li>
+            <li>COLMAP</li>
+            <li>Open-Teach</li>
+            <li>Gaussian Splatting</li>
+            <li>Open3D</li>
             <li>MATLAB / Simulink</li>
             <li>SolidWorks</li>
             <li>KiCad / EAGLE</li>
