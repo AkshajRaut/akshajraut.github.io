@@ -4,7 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Akshaj Raut is a robotics engineer focused on autonomous systems, computer vision, mobile robotics, and robot perception." />
+  <meta name="author" content="Akshaj Raut" />
+  <meta name="keywords" content="Akshaj Raut, robotics engineer, computer vision, SLAM, autonomous systems, mobile robotics, perception, Northeastern University" />
+  <meta name="theme-color" content="#07111f" />
+  <link rel="canonical" href="https://akshajraut.github.io/" />
   <title>Akshaj Raut - Robotics Engineer</title>
+
+  <!-- Open Graph / social sharing -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Akshaj Raut - Robotics Engineer" />
+  <meta property="og:description" content="Robotics engineer focused on autonomous systems, computer vision, SLAM, and robot perception." />
+  <meta property="og:url" content="https://akshajraut.github.io/" />
+  <meta property="og:image" content="https://akshajraut.github.io/logo-robotics.svg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Akshaj Raut - Robotics Engineer" />
+  <meta name="twitter:description" content="Robotics engineer focused on autonomous systems, computer vision, SLAM, and robot perception." />
+  <meta name="twitter:image" content="https://akshajraut.github.io/logo-robotics.svg" />
+
+  <!-- Structured data for search engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Akshaj Raut",
+    "url": "https://akshajraut.github.io/",
+    "jobTitle": "Robotics Engineer",
+    "email": "mailto:raut.aks@northeastern.edu",
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "Northeastern University" },
+      { "@type": "CollegeOrUniversity", "name": "University of Mumbai" }
+    ],
+    "knowsAbout": ["Robotics", "Computer Vision", "SLAM", "Autonomous Systems", "Mobile Robotics", "Robot Perception"],
+    "sameAs": [
+      "https://www.linkedin.com/in/akshajraut/",
+      "https://github.com/akshajraut"
+    ]
+  }
+  </script>
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -117,10 +153,40 @@
     .typed-cursor{opacity:1;animation:blink .7s infinite}
     @keyframes blink{0%{opacity:1}50%{opacity:0}100%{opacity:1}}
     #particles-js{position:absolute;inset:0;z-index:-1}
+    /* Active nav link (set by scroll-spy) */
+    .soft-link.is-active{
+      color:#67e8f9;
+    }
+    /* Back-to-top button */
+    #back-to-top{
+      position:fixed;
+      bottom:1.5rem;
+      right:1.5rem;
+      z-index:60;
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(0.5rem);
+      transition:opacity .25s ease, transform .25s ease, visibility .25s;
+    }
+    #back-to-top.show{
+      opacity:1;
+      visibility:visible;
+      transform:translateY(0);
+    }
     @media (max-width: 640px){
       .project-description{
         -webkit-line-clamp: 6;
       }
+    }
+    /* Respect users who prefer reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{
+        animation-duration:.001ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.001ms !important;
+      }
+      .typed-cursor{animation:none}
     }
   </style>
 </head>
@@ -171,6 +237,9 @@
             <a href="#projects" class="action-button inline-flex items-center bg-white text-slate-900 font-bold py-3 px-6 rounded-lg shadow-lg">
               <i class="fa-solid fa-diagram-project mr-2"></i>View Projects
             </a>
+            <a href="Akshaj_Raut_Resume.pdf" target="_blank" rel="noopener noreferrer" class="action-button inline-flex items-center bg-violet-500 hover:bg-violet-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg shadow-violet-500/30">
+              <i class="fa-solid fa-file-arrow-down mr-2"></i>Resume
+            </a>
             <a href="https://www.linkedin.com/in/akshajraut/" target="_blank" rel="noopener noreferrer" class="action-button inline-flex items-center bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg shadow-cyan-500/30">
               <i class="fab fa-linkedin mr-2"></i>LinkedIn
             </a>
@@ -212,10 +281,54 @@
         Selected work across autonomy, perception, robot learning, and embedded systems. The top row highlights the projects that best represent the direction of my work today.
       </p>
 
-      <!-- Visible top 6 -->
+      <!-- Visible featured projects -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- LeRobot SO-101 Imitation Learning (ACT / Diffusion Policy) -->
+        <div class="block" data-aos="fade-up">
+          <div class="card project-card flex flex-col px-8 py-10 h-full">
+            <div class="flex-grow">
+              <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-300 mb-3">Featured Project</p>
+              <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-1">
+                <i class="fas fa-robot text-xl text-cyan-400"></i>
+                <span>LeRobot SO-101 Imitation Learning</span>
+              </h3>
+              <p class="text-cyan-400 text-sm mb-4">May 2026 - Present</p>
+              <p class="project-description text-base">Brought up an SO-101 leader-follower teleoperation rig (LeRobot, HuggingFace) on real robotic hardware for pick-and-place demonstration collection, with a synchronized pipeline capturing top-camera RGB and joint-state recordings. Training Action Chunking Transformer (ACT) and Diffusion Policy models in PyTorch and benchmarking autonomous pick-and-place success rate on the physical arm.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">LeRobot</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Imitation Learning</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">ACT</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Diffusion Policy</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">PyTorch</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- LeRobot VR Teleoperation using Telegrip -->
+        <a href="https://youtube.com/shorts/-W_UaFVlXKM?si=MvebXtgdlbZxy75-" target="_blank" rel="noopener noreferrer" class="block" data-aos="fade-up" data-aos-delay="100" aria-label="LeRobot VR Teleoperation using Telegrip project video">
+          <div class="card project-card flex flex-col px-8 py-10 h-full">
+            <div class="flex-grow">
+              <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-300 mb-3">Featured Project</p>
+              <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-1">
+                <i class="fab fa-youtube text-xl text-red-500"></i>
+                <span>LeRobot VR Teleoperation using Telegrip</span>
+              </h3>
+              <p class="text-cyan-400 text-sm mb-4">July 2026 - Present</p>
+              <p class="project-description text-base">Built a VR teleoperation workflow around Telegrip and LeRobot for intuitive robot control and demonstration collection. Connected headset-driven teleoperation with LeRobot data pipelines so manipulation rollouts can be captured for downstream imitation-learning experiments.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">LeRobot</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Telegrip</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">VR Teleoperation</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Demonstration Collection</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Imitation Learning</span>
+            </div>
+          </div>
+        </a>
+
         <!-- VR Teleoperation and Demonstration Collection using Open-Teach -->
-        <a href="https://youtube.com/shorts/8L7X9tqlC7M?feature=share" target="_blank" rel="noopener noreferrer" class="block" data-aos="fade-up" aria-label="VR Teleoperation and Demonstration Collection project video">
+        <a href="https://youtube.com/shorts/8L7X9tqlC7M?feature=share" target="_blank" rel="noopener noreferrer" class="block" data-aos="fade-up" data-aos-delay="200" aria-label="VR Teleoperation and Demonstration Collection project video">
           <div class="card project-card flex flex-col px-8 py-10 h-full">
             <div class="flex-grow">
               <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-300 mb-3">Featured Project</p>
@@ -239,12 +352,11 @@
         <a href="https://github.com/AkshajRaut/featureless-scene-3d-reconstruction" target="_blank" rel="noopener noreferrer" class="block" data-aos="fade-up" data-aos-delay="100">
           <div class="card project-card flex flex-col px-8 py-10 h-full">
             <div class="flex-grow">
-              <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-300 mb-3">Featured Project</p>
               <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-1">
                 <i class="fab fa-github text-xl text-cyan-400"></i>
                 <span>Gaussian Splatting & LiDAR-based 3D Scene Reconstruction</span>
               </h3>
-              <p class="text-cyan-400 text-sm mb-4">January 2026 - Present</p>
+              <p class="text-cyan-400 text-sm mb-4">January - March 2026</p>
               <p class="project-description text-base">Captured a 1658‑image low‑texture indoor dataset and analyzed failure modes of COLMAP feature matching in featureless environments causing unstable camera pose estimation in Gaussian Splatting pipelines. Replaced failed SfM pose recovery with ARKit camera poses and LiDAR depth exported from Polycam using visual‑inertial tracking. Implemented TSDF fusion using Open3D ScalableTSDFVolume to reconstruct a 2 cm voxel resolution corridor mesh (~795K vertices) capturing walls, floor and ceiling in a featureless environment.</p>
             </div>
             <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
@@ -260,7 +372,6 @@
         <a href="https://github.com/AkshajRaut/drone-racing-trajectory-optimization" target="_blank" rel="noopener noreferrer" class="block" data-aos="fade-up">
           <div class="card project-card flex flex-col px-8 py-10 h-full">
             <div class="flex-grow">
-              <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-300 mb-3">Featured Project</p>
               <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-1">
                 <i class="fab fa-github text-xl text-cyan-400"></i>
                 <span>Drone Racing Trajectory Optimization</span>
@@ -341,13 +452,14 @@
                 <span>Autonomous AI Drone</span>
               </h3>
               <p class="text-cyan-400 text-sm mb-4">May - August 2025</p>
-              <p class="project-description text-base">Constructed a UAV using PX4 and Raspberry Pi 4 for autonomous GPS navigation with EKF-based sensor fusion. Integrated TF-Luna TOF LiDAR and RGB camera for detection and obstacle avoidance; ongoing work on person-following and 3D reconstruction.</p>
+              <p class="project-description text-base">Built a custom UAV on a Pixhawk flight controller running ArduPilot (ArduCopter 4.6.0), paired with an NVIDIA Jetson Orin Nano for onboard compute over 915 MHz telemetry and MAVLink; tuned the EK3 estimator for GPS, IMU, and barometer sensor fusion with autonomous waypoint navigation. Integrated TF-Luna TOF LiDAR and an RGB camera for object detection and obstacle avoidance, with ongoing work implementing cuVSLAM (NVIDIA Isaac ROS) for real-time onboard visual SLAM and mapping.</p>
             </div>
             <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
-              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Python</span>
-              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">ROS2</span>
-              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">EKF</span>
-              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">LIDAR</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Pixhawk</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">ArduPilot</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Jetson Orin Nano</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">MAVLink</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">cuVSLAM</span>
             </div>
           </div>
         </a>
@@ -362,13 +474,33 @@
                 <span>Live Firearm Detection System</span>
               </h3>
               <p class="text-cyan-400 text-sm mb-4">March - April 2025</p>
-              <p class="project-description text-base">Built a full-stack surveillance system by fine-tuning a YOLOv8 model. Integrated Twilio API for automated SMS and call alerts upon detection.</p>
+              <p class="project-description text-base">Fine-tuned a YOLOv8n model on a custom 2,376-image dataset, achieving 91% mAP@0.5, 100% precision, and 92% recall. Deployed real-time inference on live webcam feeds at 30+ FPS with intelligent pre/post-detection frame capture for forensic analysis, and built an automated Twilio alerting pipeline for instant SMS and voice alerts, cutting incident response time by 40%.</p>
             </div>
             <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
               <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Python</span>
               <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">PyTorch</span>
               <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">YOLOv8</span>
               <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Twilio API</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- ORB-SLAM3 on Autonomous Car -->
+        <a href="https://youtu.be/rRnFcgB8jcc?si=AsWeHpgg7MaEHlQP" target="_blank" rel="noopener noreferrer" class="block" data-aos="fade-up" data-aos-delay="100" aria-label="ORB-SLAM3 on Autonomous Car project video">
+          <div class="card project-card flex flex-col px-8 py-10 h-full">
+            <div class="flex-grow">
+              <h3 class="text-xl font-bold text-white flex items-center gap-3 mb-1">
+                <i class="fab fa-youtube text-xl text-red-500"></i>
+                <span>ORB-SLAM3 on Autonomous Car</span>
+              </h3>
+              <p class="text-cyan-400 text-sm mb-4">November - December 2024</p>
+              <p class="project-description text-base">Deployed ORB-SLAM3 stereo-inertial SLAM on the Nuance autonomous car, processing 20,000+ stereo frames from a multi-camera setup. Calibrated and synchronized real-world stereo camera and IMU data to achieve a consistent 5-mile trajectory with successful loop closure and under 2% overall trajectory error.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">ORB-SLAM3</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Stereo-Inertial</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">SLAM</span>
+              <span class="px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">Loop Closure</span>
             </div>
           </div>
         </a>
@@ -589,13 +721,19 @@
             <li>GTSAM</li>
             <li>NVIDIA Isaac Sim</li>
             <li>Isaac Gym</li>
+            <li>cuVSLAM (Isaac ROS)</li>
+            <li>Gazebo</li>
+            <li>RViz2</li>
+            <li>ArduPilot</li>
             <li>Nerfstudio</li>
             <li>COLMAP</li>
             <li>Open-Teach</li>
+            <li>Telegrip</li>
             <li>Gaussian Splatting</li>
             <li>Open3D</li>
             <li>MATLAB / Simulink</li>
-            <li>SolidWorks</li>
+            <li>LabVIEW</li>
+            <li>SolidWorks (CSWA / CSWP)</li>
             <li>KiCad / EAGLE</li>
             <li>Git / GitHub / GitLab</li>
           </ul>
@@ -606,6 +744,7 @@
             <li>LiDAR (2D / 3D)</li>
             <li>RGB & Depth Cameras</li>
             <li>IMU / GPS / GNSS</li>
+            <li>NVIDIA Jetson Orin Nano</li>
             <li>Raspberry Pi / Arduino</li>
             <li>ESP32 / ESP8266</li>
             <li>PX4 / Pixhawk</li>
@@ -667,6 +806,11 @@
     </div>
   </footer>
 
+  <!-- Back to top -->
+  <button id="back-to-top" class="bg-cyan-500 hover:bg-cyan-600 text-white w-12 h-12 rounded-full shadow-lg shadow-cyan-500/30 flex items-center justify-center" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
   <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
@@ -674,8 +818,10 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
       // AOS
-      AOS.init({ duration: 800, once: true });
+      AOS.init({ duration: 800, once: true, disable: reduceMotion });
 
       // Mobile menu toggle
       const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -695,16 +841,18 @@
         typeSpeed: 50, backSpeed: 25, loop: true, smartBackspace: true,
       });
 
-      // Particles
-      particlesJS('particles-js', {
-        particles:{ number:{ value:80, density:{ enable:true, value_area:800 }},
-          color:{ value:"#ffffff" }, shape:{ type:"circle" }, opacity:{ value:0.5 },
-          size:{ value:3, random:true }, line_linked:{ enable:true, distance:150, color:"#ffffff", opacity:0.4, width:1 },
-          move:{ enable:true, speed:2, out_mode:"out" } },
-        interactivity:{ detect_on:"canvas", events:{ onhover:{ enable:true, mode:"repulse" }, onclick:{ enable:true, mode:"push" }, resize:true },
-          modes:{ repulse:{ distance:100, duration:0.4 }, push:{ particles_nb:4 } } },
-        retina_detect:true
-      });
+      // Particles (skipped for users who prefer reduced motion)
+      if (!reduceMotion) {
+        particlesJS('particles-js', {
+          particles:{ number:{ value:80, density:{ enable:true, value_area:800 }},
+            color:{ value:"#ffffff" }, shape:{ type:"circle" }, opacity:{ value:0.5 },
+            size:{ value:3, random:true }, line_linked:{ enable:true, distance:150, color:"#ffffff", opacity:0.4, width:1 },
+            move:{ enable:true, speed:2, out_mode:"out" } },
+          interactivity:{ detect_on:"canvas", events:{ onhover:{ enable:true, mode:"repulse" }, onclick:{ enable:true, mode:"push" }, resize:true },
+            modes:{ repulse:{ distance:100, duration:0.4 }, push:{ particles_nb:4 } } },
+          retina_detect:true
+        });
+      }
 
       // More projects toggle
       const btn = document.getElementById('toggle-more');
@@ -713,6 +861,33 @@
         grid.classList.toggle('hidden');
         btn.querySelector('span').textContent = grid.classList.contains('hidden') ? 'More Projects' : 'Show Less';
         btn.setAttribute('aria-expanded', String(!grid.classList.contains('hidden')));
+      });
+
+      // Scroll-spy: highlight the nav link for the section in view
+      const navLinks = [...document.querySelectorAll('header nav a')];
+      const sections = navLinks
+        .map(link => document.querySelector(link.getAttribute('href')))
+        .filter(Boolean);
+      if ('IntersectionObserver' in window && sections.length) {
+        const spy = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const id = entry.target.id;
+              navLinks.forEach(link =>
+                link.classList.toggle('is-active', link.getAttribute('href') === '#' + id));
+            }
+          });
+        }, { rootMargin: '-40% 0px -55% 0px' });
+        sections.forEach(s => spy.observe(s));
+      }
+
+      // Back to top
+      const backToTop = document.getElementById('back-to-top');
+      const toggleBackToTop = () => backToTop.classList.toggle('show', window.scrollY > 600);
+      window.addEventListener('scroll', toggleBackToTop, { passive: true });
+      toggleBackToTop();
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
       });
     });
   </script>
