@@ -109,6 +109,51 @@
     }
     ::selection{ background:rgba(34,211,238,0.3); color:#fff; }
 
+    /* ---------- 3D world (Three.js) ---------- */
+    #world3d{ position:fixed; inset:0; z-index:0; pointer-events:none; }
+    #world3d canvas{ width:100%; height:100%; display:block; }
+
+    /* ---------- Telemetry HUD ---------- */
+    #hud{
+      display:none; position:fixed; bottom:6.5rem; right:1.5rem; width:242px; z-index:40;
+      pointer-events:none; user-select:none;
+      background:rgba(4,10,19,0.9); border:1px solid rgba(34,211,238,0.25);
+      border-left:3px solid var(--accent); border-radius:0.5rem;
+      padding:0.75rem 0.9rem; backdrop-filter:blur(6px);
+      font-family:'JetBrains Mono',monospace; font-size:0.68rem; color:var(--text-muted);
+      box-shadow:0 12px 30px rgba(0,0,0,0.45);
+    }
+    @media (min-width:1024px){ body.has-3d #hud{ display:block; } }
+    .hud-head{
+      display:flex; justify-content:space-between; align-items:center;
+      color:#e0f2fe; font-weight:600; padding-bottom:0.45rem; margin-bottom:0.45rem;
+      border-bottom:1px solid rgba(148,163,184,0.16);
+    }
+    .hud-dot{
+      width:8px; height:8px; border-radius:9999px; background:var(--accent);
+      box-shadow:0 0 8px var(--accent); animation:pulse-dot 2s ease-in-out infinite;
+    }
+    .hud-row{ display:flex; justify-content:space-between; margin-bottom:2px; }
+    .hud-row > span:first-child{ color:rgba(148,169,193,0.6); }
+    .hud-sep{ margin-top:0.4rem; padding-top:0.4rem; border-top:1px solid rgba(148,163,184,0.12); }
+
+    /* ---------- Terminal brand cursor ---------- */
+    .brand-cursor{
+      display:inline-block; width:7px; height:0.95em; margin-left:5px;
+      background:var(--accent); vertical-align:middle;
+      animation:blink 1s step-end infinite;
+    }
+
+    /* ---------- Typewriter eyebrow cursor ---------- */
+    .section-eyebrow{ min-height:1.2em; }
+    .section-eyebrow.typing::after{
+      content:'▌'; color:var(--accent); animation:blink .8s step-end infinite;
+    }
+
+    /* ---------- Scroll hint (fade + leave the tab order when hidden) ---------- */
+    #scroll-hint{ transition:opacity .5s ease, visibility .5s; }
+    #scroll-hint.hide{ opacity:0; visibility:hidden; }
+
     /* ---------- Boot overlay ---------- */
     #boot{
       position:fixed; inset:0; z-index:100; background:var(--bg-deep);
@@ -404,6 +449,8 @@
       }
       .js .reveal{ opacity:1; transform:none; }
       #lidar-canvas{ display:none; }
+      #world3d{ display:none; }
+      #hud{ display:none !important; }
       #boot{ display:none; }
     }
   </style>
@@ -414,6 +461,7 @@
   <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[110] focus:bg-cyan-500 focus:text-slate-900 focus:font-bold focus:px-4 focus:py-2 focus:rounded-lg">Skip to content</a>
 
   <div class="grid-overlay" aria-hidden="true"></div>
+  <div id="world3d" aria-hidden="true"></div>
   <div id="progress-bar" aria-hidden="true"></div>
 
   <!-- Boot sequence overlay -->
@@ -427,11 +475,10 @@
   <!-- Header -->
   <header id="site-header" class="bg-[#050b14]/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-400/10">
     <div class="container mx-auto px-6 py-3.5 flex justify-between items-center">
-      <a href="#hero" class="flex items-center gap-3 font-display text-xl font-bold text-white">
+      <a href="#hero" class="flex items-center gap-3 text-white" aria-label="Akshaj Raut — home">
         <img src="logo-robotics.svg" alt="Robotics logo" class="h-10 w-10 logo-mark" />
-        <span class="hidden sm:flex flex-col leading-tight">
-          <span>Akshaj Raut</span>
-          <span class="font-mono text-[0.6rem] font-normal tracking-[0.3em] text-cyan-300/60 uppercase">Robotics Engineer</span>
+        <span class="hidden lg:inline-flex items-center whitespace-nowrap font-mono text-[0.82rem] font-semibold tracking-tight">
+          <span class="text-green-400">akshaj@raut</span><span class="text-slate-500">:</span><span class="text-sky-400">~</span><span class="text-slate-400">$</span><span class="ml-2 text-slate-200">cat profile</span><span class="brand-cursor" aria-hidden="true"></span>
         </span>
       </a>
       <nav class="hidden md:flex items-center space-x-7" aria-label="Primary">
@@ -535,8 +582,9 @@
         </div>
       </div>
 
-      <a href="#about" class="scroll-hint absolute bottom-6 left-1/2 -translate-x-1/2 z-10 text-cyan-300/60 hover:text-cyan-300" aria-label="Scroll to About section">
-        <i class="fa-solid fa-chevron-down text-xl"></i>
+      <a href="#about" id="scroll-hint" class="absolute bottom-5 left-1/2 -translate-x-1/2 z-10 text-center" aria-label="Scroll to About section">
+        <p id="scroll-hint-label" class="font-mono text-[0.62rem] tracking-[0.3em] text-cyan-300/70 mb-2">SCROLL // MORPH SEQUENCE</p>
+        <span class="scroll-hint block w-px h-12 mx-auto bg-gradient-to-b from-cyan-400 to-transparent" aria-hidden="true"></span>
       </a>
     </section>
 
@@ -1225,6 +1273,18 @@
     </div>
   </footer>
 
+  <!-- Telemetry HUD (desktop, 3D scene active only) -->
+  <aside id="hud" aria-hidden="true">
+    <div class="hud-head"><span>/state_estimator</span><span class="hud-dot"></span></div>
+    <div class="hud-row"><span>frame_id:</span><span>odom</span></div>
+    <div class="hud-row"><span>pos_x:</span><span id="hud-x" class="text-cyan-300">0.00</span></div>
+    <div class="hud-row"><span>pos_y:</span><span id="hud-y" class="text-cyan-300">0.00</span></div>
+    <div class="hud-row"><span>pos_z:</span><span id="hud-z" class="text-cyan-300">0.00</span></div>
+    <div class="hud-row"><span>features:</span><span id="hud-feat" class="text-cyan-300">0</span></div>
+    <div class="hud-row hud-sep"><span>perception:</span><span id="hud-percep" class="text-amber-300">SCANNING…</span></div>
+    <div class="hud-row"><span>mode:</span><span id="hud-mode" class="text-violet-300">AERIAL_SURVEY</span></div>
+  </aside>
+
   <!-- Back to top -->
   <button id="back-to-top" class="btn-ghost text-cyan-300 w-12 h-12 rounded-full shadow-lg shadow-cyan-500/10 flex items-center justify-center border border-cyan-400/30 bg-[#0a1424]/90 backdrop-blur" aria-label="Back to top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -1248,6 +1308,10 @@
 
   <!-- Toast -->
   <div id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Three.js for the morphing 3D point-cloud world (2D canvas is the fallback).
+       async so a slow/hanging CDN never delays DOMContentLoaded (page reveals, menus, palette). -->
+  <script id="three-script" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" async></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -1311,6 +1375,45 @@
         revealEls.forEach(function (el) { ro.observe(el); });
       } else {
         revealEls.forEach(function (el) { el.classList.add('in'); });
+      }
+
+      /* ---------------- Typewriter section eyebrows ---------------- */
+      var eyebrows = document.querySelectorAll('.section-eyebrow');
+      if (!reduceMotion && 'IntersectionObserver' in window) {
+        // Keep the full text in a visually-hidden span for assistive tech;
+        // the typewriter animates an aria-hidden sibling only.
+        Array.prototype.forEach.call(eyebrows, function (el) {
+          var full = el.textContent;
+          el.setAttribute('data-text', full);
+          el.textContent = '';
+          var sr = document.createElement('span');
+          sr.className = 'sr-only';
+          sr.textContent = full;
+          var vis = document.createElement('span');
+          vis.setAttribute('aria-hidden', 'true');
+          el.appendChild(sr);
+          el.appendChild(vis);
+        });
+        var typeObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (!en.isIntersecting || en.target.dataset.typed) return;
+            en.target.dataset.typed = '1';
+            typeObs.unobserve(en.target);
+            var el = en.target, txt = el.getAttribute('data-text'), ci2 = 0;
+            var vis = el.lastChild;
+            el.classList.add('typing');
+            (function step() {
+              if (ci2 <= txt.length) {
+                vis.textContent = txt.slice(0, ci2);
+                ci2++;
+                setTimeout(step, 24);
+              } else {
+                el.classList.remove('typing');
+              }
+            })();
+          });
+        }, { threshold: 0.6 });
+        Array.prototype.forEach.call(eyebrows, function (el) { typeObs.observe(el); });
       }
 
       /* ---------------- Typed subtitle (custom, no library) ---------------- */
@@ -1446,10 +1549,11 @@
         counters.forEach(function (c) { c.textContent = c.dataset.target; });
       }
 
-      /* ---------------- LiDAR sweep canvas ---------------- */
+      /* ---------------- LiDAR sweep canvas (2D fallback when WebGL/Three.js unavailable) ---------------- */
       var canvas = document.getElementById('lidar-canvas');
       var sparks = []; // konami burst particles
-      if (canvas && !reduceMotion) {
+      function init2DLidar() {
+        if (!canvas) return;
         var ctx = canvas.getContext('2d');
         var W = 0, H = 0, CX = 0, CY = 0, MAXR = 0;
         var points = [];
@@ -1622,6 +1726,413 @@
         };
       }
 
+      /* ---------------- 3D morphing point-cloud world (Three.js) ----------------
+         Narrative: a drone surveys outdoor terrain; scrolling morphs the world
+         into an indoor corridor where the drone lands and a robot arm performs
+         pick-and-place (2-link analytic IK). Falls back to the 2D LiDAR canvas. */
+      function init3DWorld() {
+        var container = document.getElementById('world3d');
+        var hero = document.getElementById('hero');
+        if (!container || !hero) throw new Error('no container');
+
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(58, window.innerWidth / window.innerHeight, 0.1, 400);
+        var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        container.appendChild(renderer.domElement);
+
+        var COUNT = window.innerWidth < 768 ? 14000 : 34000;
+
+        /* ----- point cloud: outdoor terrain -> indoor corridor ----- */
+        var vsh = [
+          'attribute vec3 target;',
+          'attribute vec3 colorA;',
+          'attribute vec3 colorB;',
+          'uniform float uMorph;',
+          'uniform float uTime;',
+          'uniform float uDrift;',
+          'uniform vec3 uPulseO;',
+          'uniform float uPulseR;',
+          'varying vec3 vColor;',
+          'varying float vAlpha;',
+          'void main(){',
+          '  vec3 pos = mix(position, target, uMorph);',
+          '  pos.y += sin(pos.x*0.12 + uTime*0.9) * 0.25 * (1.0-uMorph);',
+          '  pos.z = mod(pos.z + uDrift + 150.0, 190.0) - 150.0;',
+          '  float band = 1.0 - smoothstep(0.0, 3.2, abs(distance(pos, uPulseO) - uPulseR));',
+          '  vec4 mv = modelViewMatrix * vec4(pos, 1.0);',
+          '  gl_Position = projectionMatrix * mv;',
+          '  vColor = mix(colorA, colorB, uMorph) + vec3(band) * 0.55;',
+          '  float sz = min(260.0 / -mv.z, 6.5);',
+          '  gl_PointSize = sz * (0.9 + band * 0.8);',
+          '  vAlpha = (1.0 - smoothstep(30.0, 140.0, -pos.z)) * (0.55 + band * 0.45);',
+          '  vAlpha *= smoothstep(3.0, 10.0, -mv.z);',
+          '}'
+        ].join('\n');
+        var fsh = [
+          'varying vec3 vColor;',
+          'varying float vAlpha;',
+          'void main(){',
+          '  vec2 c = gl_PointCoord - vec2(0.5);',
+          '  if (length(c) > 0.5) discard;',
+          '  gl_FragColor = vec4(vColor, vAlpha);',
+          '}'
+        ].join('\n');
+
+        var geo = new THREE.BufferGeometry();
+        var posArr = new Float32Array(COUNT * 3), tgtArr = new Float32Array(COUNT * 3);
+        var colA = new Float32Array(COUNT * 3), colB = new Float32Array(COUNT * 3);
+        var col = new THREE.Color();
+        for (var i = 0; i < COUNT; i++) {
+          var i3 = i * 3;
+          // outdoor: rolling terrain + sparse sky points
+          var x = (Math.random() - 0.5) * 170;
+          var z = (Math.random() - 0.5) * 185 - 55;
+          var y = Math.sin(x * 0.07) * Math.cos(z * 0.045) * 4.2 + Math.sin(x * 0.021 + z * 0.03) * 2.5 - 6.0;
+          var sky = Math.random() > 0.9;
+          if (sky) y = 9 + Math.random() * 22;
+          posArr[i3] = x; posArr[i3 + 1] = y; posArr[i3 + 2] = z;
+          if (sky) { col.setHex(0x67e8f9); col.multiplyScalar(0.35 + Math.random() * 0.4); }
+          else { var h = (y + 11) / 9; col.setHSL(0.55 - h * 0.16, 0.85, 0.18 + h * 0.35); }
+          colA[i3] = col.r; colA[i3 + 1] = col.g; colA[i3 + 2] = col.b;
+          // corridor: floor / ceiling / walls (nod to the featureless-corridor reconstruction)
+          var r = Math.random(), tx, ty;
+          var tz = (Math.random() - 0.5) * 185 - 55;
+          if (r < 0.3) {
+            tx = (Math.random() - 0.5) * 30; ty = -8;
+            col.setHSL(0.52, 0.7, 0.10 + Math.random() * 0.12);
+          } else if (r < 0.5) {
+            tx = (Math.random() - 0.5) * 30; ty = 11;
+            col.setHSL(0.58, 0.6, 0.10 + Math.random() * 0.10);
+          } else {
+            tx = r < 0.75 ? -15 : 15; ty = -8 + Math.random() * 19;
+            var hh = (ty + 8) / 19; col.setHSL(0.5 + hh * 0.12, 0.8, 0.14 + hh * 0.22);
+          }
+          if (Math.random() > 0.985) {
+            tx = (Math.random() - 0.5) * 26; ty = -7 + Math.random() * 16;
+            col.setHex(0x8b5cf6); col.multiplyScalar(0.6);
+          }
+          tgtArr[i3] = tx; tgtArr[i3 + 1] = ty; tgtArr[i3 + 2] = tz;
+          colB[i3] = col.r; colB[i3 + 1] = col.g; colB[i3 + 2] = col.b;
+        }
+        geo.setAttribute('position', new THREE.BufferAttribute(posArr, 3));
+        geo.setAttribute('target', new THREE.BufferAttribute(tgtArr, 3));
+        geo.setAttribute('colorA', new THREE.BufferAttribute(colA, 3));
+        geo.setAttribute('colorB', new THREE.BufferAttribute(colB, 3));
+        var pointsMat = new THREE.ShaderMaterial({
+          vertexShader: vsh, fragmentShader: fsh,
+          uniforms: {
+            uMorph: { value: 0 }, uTime: { value: 0 }, uDrift: { value: 0 },
+            uPulseO: { value: new THREE.Vector3(0, 5, -16) }, uPulseR: { value: 0 }
+          },
+          transparent: true, depthWrite: false, blending: THREE.AdditiveBlending
+        });
+        scene.add(new THREE.Points(geo, pointsMat));
+
+        /* ----- materials ----- */
+        var wireMat = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.32 });
+        var cyanMat = new THREE.MeshBasicMaterial({ color: 0x22d3ee });
+        var propMat = new THREE.MeshBasicMaterial({ color: 0x22d3ee, transparent: true, opacity: 0.22 });
+
+        /* ----- drone ----- */
+        var drone = new THREE.Group();
+        drone.scale.setScalar(2.2);
+        var dBody = new THREE.Mesh(new THREE.BoxGeometry(1.1, 0.32, 1.1), wireMat); drone.add(dBody);
+        var dArm1 = new THREE.Mesh(new THREE.BoxGeometry(3, 0.09, 0.09), wireMat); dArm1.rotation.y = Math.PI / 4; drone.add(dArm1);
+        var dArm2 = new THREE.Mesh(new THREE.BoxGeometry(3, 0.09, 0.09), wireMat); dArm2.rotation.y = -Math.PI / 4; drone.add(dArm2);
+        var props = [];
+        var propGeo = new THREE.CylinderGeometry(0.72, 0.72, 0.04, 10);
+        [1, -1].forEach(function (px) {
+          [1, -1].forEach(function (pz) {
+            var p = new THREE.Mesh(propGeo, propMat);
+            p.position.set(px * 1.06, 0.12, pz * 1.06);
+            props.push(p); drone.add(p);
+          });
+        });
+        var dLidar = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.16, 0.22, 10), cyanMat);
+        dLidar.position.y = 0.32; drone.add(dLidar);
+        var legGeo = new THREE.BoxGeometry(0.06, 0.5, 0.06);
+        [[0.4, 0.4], [-0.4, 0.4], [0.4, -0.4], [-0.4, -0.4]].forEach(function (l) {
+          var leg = new THREE.Mesh(legGeo, wireMat);
+          leg.position.set(l[0], -0.4, l[1]); drone.add(leg);
+        });
+        scene.add(drone);
+
+        /* ----- robot arm lab (visible after morph) ----- */
+        var lab = new THREE.Group(); lab.visible = false; scene.add(lab);
+        var ARM_POS = new THREE.Vector3(4, -8, -8);
+        var L1 = 4.2, L2 = 3.6, SHOULDER_H = 1.6;
+        var armRoot = new THREE.Group(); armRoot.position.copy(ARM_POS); lab.add(armRoot);
+        var baseMesh = new THREE.Mesh(new THREE.CylinderGeometry(1.3, 1.5, 0.7, 14), wireMat);
+        baseMesh.position.y = 0.35; armRoot.add(baseMesh);
+        var pillar = new THREE.Mesh(new THREE.BoxGeometry(0.7, 1.0, 0.7), wireMat);
+        pillar.position.y = 1.1; armRoot.add(pillar);
+        var shoulder = new THREE.Group(); shoulder.position.y = SHOULDER_H; armRoot.add(shoulder);
+        var link1 = new THREE.Mesh(new THREE.BoxGeometry(0.5, L1, 0.5), wireMat);
+        link1.position.y = L1 / 2; shoulder.add(link1);
+        var j1 = new THREE.Mesh(new THREE.SphereGeometry(0.3, 10, 10), cyanMat); shoulder.add(j1);
+        var elbow = new THREE.Group(); elbow.position.y = L1; shoulder.add(elbow);
+        var link2 = new THREE.Mesh(new THREE.BoxGeometry(0.38, L2, 0.38), wireMat);
+        link2.position.y = L2 / 2; elbow.add(link2);
+        var j2 = new THREE.Mesh(new THREE.SphereGeometry(0.26, 10, 10), cyanMat); elbow.add(j2);
+        var gripper = new THREE.Group(); gripper.position.y = L2; elbow.add(gripper);
+        var fingerGeo = new THREE.BoxGeometry(0.12, 0.62, 0.3);
+        var fingerL = new THREE.Mesh(fingerGeo, cyanMat); gripper.add(fingerL);
+        var fingerR = new THREE.Mesh(fingerGeo, cyanMat); gripper.add(fingerR);
+
+        // pedestals + cube
+        var PED_R = 3.4, YAW_A = 0.9, YAW_B = -0.7;
+        function pedPos(yaw) {
+          return new THREE.Vector3(ARM_POS.x + Math.sin(yaw) * PED_R, -7.55, ARM_POS.z + Math.cos(yaw) * PED_R);
+        }
+        var pedGeo = new THREE.BoxGeometry(1.3, 0.9, 1.3);
+        var pedA = new THREE.Mesh(pedGeo, wireMat); pedA.position.copy(pedPos(YAW_A)); lab.add(pedA);
+        var pedB = new THREE.Mesh(pedGeo, wireMat); pedB.position.copy(pedPos(YAW_B)); lab.add(pedB);
+        var CUBE_Y = -7.1 + 0.375;
+        var cube = new THREE.Mesh(new THREE.BoxGeometry(0.75, 0.75, 0.75),
+          new THREE.MeshBasicMaterial({ color: 0x22d3ee, wireframe: true }));
+        lab.add(cube);
+        var pickPed = pedA, placePed = pedB;
+        cube.position.set(pickPed.position.x, CUBE_Y, pickPed.position.z);
+
+        // 2-link analytic IK: angles from vertical, bending toward local +Z
+        function solveIK(d, v) {
+          var r2 = d * d + v * v;
+          var c = (r2 - L1 * L1 - L2 * L2) / (2 * L1 * L2);
+          c = Math.max(-1, Math.min(1, c));
+          var phi = Math.acos(c);
+          var th1 = Math.atan2(d, v) - Math.atan2(L2 * Math.sin(phi), L1 + L2 * Math.cos(phi));
+          return [th1, phi];
+        }
+        function smooth(t) { return t * t * (3 - 2 * t); }
+        // keyframes: [phase, target-point key, grip(1=open,0=closed)]
+        var KFS = [
+          [0.00, 'ah', 1], [0.14, 'ah', 1], [0.28, 'a', 1], [0.36, 'a', 0],
+          [0.50, 'ah', 0], [0.62, 'bh', 0], [0.74, 'b', 0], [0.80, 'b', 1],
+          // end at 'bh': after the pedestal swap old 'bh' becomes new 'ah',
+          // so the wrap is seamless (no teleport between cycles)
+          [0.90, 'bh', 1], [1.00, 'bh', 1]
+        ];
+        var ikTarget = new THREE.Vector3();
+        var kfPoints = { a: new THREE.Vector3(), ah: new THREE.Vector3(), b: new THREE.Vector3(), bh: new THREE.Vector3() };
+        function refreshKfPoints() {
+          kfPoints.a.set(pickPed.position.x, CUBE_Y, pickPed.position.z);
+          kfPoints.ah.copy(kfPoints.a); kfPoints.ah.y += 2.4;
+          kfPoints.b.set(placePed.position.x, CUBE_Y, placePed.position.z);
+          kfPoints.bh.copy(kfPoints.b); kfPoints.bh.y += 2.4;
+        }
+        refreshKfPoints();
+        var lastCycleP = 0;
+        function animateArm(tSec) {
+          var p = (tSec % 7.5) / 7.5;
+          if (p < lastCycleP) { // cycle wrapped: swap pick/place, cube stays where it was placed
+            var tmp = pickPed; pickPed = placePed; placePed = tmp;
+            refreshKfPoints();
+          }
+          lastCycleP = p;
+          var k = 0;
+          while (k < KFS.length - 2 && p > KFS[k + 1][0]) k++;
+          var k0 = KFS[k], k1 = KFS[k + 1];
+          var s = smooth(Math.min(1, Math.max(0, (p - k0[0]) / (k1[0] - k0[0]))));
+          ikTarget.copy(kfPoints[k0[1]]).lerp(kfPoints[k1[1]], s);
+          var grip = k0[2] + (k1[2] - k0[2]) * s;
+          var dx = ikTarget.x - ARM_POS.x, dz = ikTarget.z - ARM_POS.z;
+          var yaw = Math.atan2(dx, dz);
+          var d = Math.sqrt(dx * dx + dz * dz);
+          var v = ikTarget.y - (ARM_POS.y + SHOULDER_H);
+          var ik = solveIK(d, v);
+          armRoot.rotation.y = yaw;
+          shoulder.rotation.x = ik[0];
+          elbow.rotation.x = ik[1];
+          fingerL.position.x = -(0.28 + grip * 0.24);
+          fingerR.position.x = (0.28 + grip * 0.24);
+          var held = p >= 0.36 && p < 0.77;
+          if (held) {
+            cube.position.copy(ikTarget);
+            cube.rotation.y = yaw;
+          } else if (p < 0.36) {
+            cube.position.set(pickPed.position.x, CUBE_Y, pickPed.position.z);
+          } else {
+            cube.position.set(placePed.position.x, CUBE_Y, placePed.position.z);
+          }
+          return held;
+        }
+
+        /* ----- scroll-driven morph ----- */
+        var scrollP = 0;
+        function onScroll3d() {
+          var max = document.documentElement.scrollHeight - window.innerHeight;
+          scrollP = max > 0 ? window.scrollY / max : 0;
+        }
+        window.addEventListener('scroll', onScroll3d, { passive: true });
+        onScroll3d();
+
+        var mx = 0.5, my = 0.5;
+        window.addEventListener('mousemove', function (e) {
+          mx = e.clientX / window.innerWidth;
+          my = e.clientY / window.innerHeight;
+        }, { passive: true });
+
+        window.addEventListener('resize', function () {
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        /* ----- HUD bindings ----- */
+        var hudX = document.getElementById('hud-x'), hudY = document.getElementById('hud-y'),
+            hudZ = document.getElementById('hud-z'), hudFeat = document.getElementById('hud-feat'),
+            hudPercep = document.getElementById('hud-percep'), hudMode = document.getElementById('hud-mode');
+
+        /* ----- render loop (single scheduled callback, pauses when tab hidden) ----- */
+        var morph = 0, drift = 0, lastT = 0, frameN = 0;
+        var rollStart = -10, pulseFastUntil = -1;
+        var landPos = new THREE.Vector3(-4.5, -7.05, -7);
+        var camPos = new THREE.Vector3(), camLook = new THREE.Vector3();
+        var rafId3 = 0, running3 = true;
+
+        window.__barrelRoll = function () {
+          rollStart = performance.now() * 0.001;
+          pulseFastUntil = rollStart + 2.6;
+        };
+
+        function loop(ts) {
+          if (!running3) return;
+          var dt = Math.min(ts - lastT, 50); lastT = ts;
+          var tSec = ts * 0.001;
+          frameN++;
+
+          var morphTarget = Math.max(0, Math.min(1, (scrollP - 0.04) * 3.2));
+          morph += (morphTarget - morph) * 0.06;
+          drift += dt * 0.009 * (1 - morph);
+
+          pointsMat.uniforms.uTime.value = tSec;
+          pointsMat.uniforms.uMorph.value = morph;
+          pointsMat.uniforms.uDrift.value = drift;
+          var pulsePeriod = tSec < pulseFastUntil ? 1.0 : 3.8;
+          pointsMat.uniforms.uPulseR.value = ((tSec % pulsePeriod) / pulsePeriod) * 75;
+          pointsMat.uniforms.uPulseO.value.copy(drone.position);
+
+          // drone: aerial loiter -> landing
+          var e = smooth(morph);
+          var ax2 = Math.sin(tSec * 0.4) * 6;
+          var ay = 5.5 + Math.sin(tSec * 1.7) * 0.45;
+          var az = -16 + Math.cos(tSec * 0.3) * 3;
+          drone.position.set(
+            ax2 * (1 - e) + landPos.x * e,
+            ay * (1 - e) + landPos.y * e,
+            az * (1 - e) + landPos.z * e
+          );
+          var bank = Math.cos(tSec * 0.4) * 0.12 * (1 - e);
+          var rollP = (tSec - rollStart) / 1.1;
+          drone.rotation.z = bank + (rollP > 0 && rollP < 1 ? smooth(rollP) * Math.PI * 2 : 0);
+          drone.rotation.y = Math.sin(tSec * 0.23) * 0.4 * (1 - e);
+          var propSpeed = 0.55 * (1 - e * 0.96) + 0.02;
+          props.forEach(function (pr) { pr.rotation.y += propSpeed; });
+          dLidar.rotation.y -= 0.09;
+
+          // lab appears late in the morph
+          var held = false;
+          if (morph > 0.55) {
+            lab.visible = true;
+            var pop = smooth(Math.min(1, (morph - 0.55) / 0.45));
+            lab.scale.setScalar(pop);
+            held = animateArm(tSec);
+          } else {
+            lab.visible = false;
+          }
+
+          // camera: aerial vantage -> up close with the arm, mouse parallax
+          camPos.set(0 + (mx - 0.5) * 2.5, 3.2 * (1 - e) - 0.8 * e + (0.5 - my) * 1.5, 24 * (1 - e) + 7.5 * e);
+          camLook.set(3.2 * e, 1.5 * (1 - e) - 5.0 * e, -20 * (1 - e) - 9.0 * e);
+          camera.position.lerp(camPos, 0.08);
+          camera.lookAt(camLook);
+
+          // HUD (throttled)
+          if (frameN % 12 === 0 && hudX) {
+            hudX.textContent = drone.position.x.toFixed(2);
+            hudY.textContent = drone.position.y.toFixed(2);
+            hudZ.textContent = drone.position.z.toFixed(2);
+            if (morph < 0.2) {
+              hudMode.textContent = 'AERIAL_SURVEY'; hudMode.style.color = '#a78bfa';
+            } else if (morph < 0.9) {
+              hudMode.textContent = 'TRANSITION'; hudMode.style.color = '#fbbf24';
+            } else {
+              hudMode.textContent = 'MANIPULATION'; hudMode.style.color = '#22d3ee';
+            }
+            if (morph < 0.9) {
+              var sweeping = (tSec % pulsePeriod) / pulsePeriod < 0.35;
+              hudPercep.textContent = sweeping ? 'SWEEP_ACTIVE' : 'SCANNING…';
+              hudPercep.style.color = sweeping ? '#4ade80' : '#fbbf24';
+              hudFeat.textContent = String(900 + Math.floor(Math.random() * 400));
+            } else {
+              hudPercep.textContent = held ? 'OBJECT_GRASPED' : 'TRACKING_TARGET';
+              hudPercep.style.color = held ? '#4ade80' : '#fbbf24';
+              hudFeat.textContent = held ? '1240' : String(420 + Math.floor(Math.random() * 160));
+            }
+          }
+
+          renderer.render(scene, camera);
+          rafId3 = requestAnimationFrame(loop);
+        }
+        function setRun3(r) {
+          if (r && !running3) {
+            running3 = true; lastT = performance.now();
+            cancelAnimationFrame(rafId3);
+            rafId3 = requestAnimationFrame(loop);
+          } else if (!r && running3) {
+            running3 = false;
+            cancelAnimationFrame(rafId3);
+          }
+        }
+        document.addEventListener('visibilitychange', function () { setRun3(!document.hidden); });
+        rafId3 = requestAnimationFrame(function (ts) { lastT = ts; rafId3 = requestAnimationFrame(loop); });
+      }
+
+      /* ---------------- Canvas dispatcher: 3D world with 2D fallback ----------------
+         three.js loads async so it can never block the page; we start the 3D world
+         once it arrives (or fall back to the 2D canvas on error / 5s hang). */
+      function webglAvailable() {
+        try {
+          var c = document.createElement('canvas');
+          return !!(window.WebGLRenderingContext && (c.getContext('webgl') || c.getContext('experimental-webgl')));
+        } catch (e) { return false; }
+      }
+      function startWorld() {
+        var ok3D = false;
+        if (!reduceMotion && typeof THREE !== 'undefined' && webglAvailable()) {
+          try {
+            init3DWorld();
+            ok3D = true;
+            document.body.classList.add('has-3d');
+            if (canvas) canvas.style.display = 'none';
+          } catch (err) {
+            var wc = document.getElementById('world3d');
+            if (wc && wc.parentNode) wc.parentNode.removeChild(wc);
+          }
+        }
+        if (!ok3D && !reduceMotion) init2DLidar();
+        if (!ok3D) {
+          var hintLabel = document.getElementById('scroll-hint-label');
+          if (hintLabel) hintLabel.textContent = 'SCROLL // ENGAGE';
+        }
+      }
+      var worldStarted = false;
+      function settleWorld() {
+        if (worldStarted) return;
+        worldStarted = true;
+        startWorld();
+      }
+      var threeScript = document.getElementById('three-script');
+      if (typeof THREE !== 'undefined' || !threeScript) {
+        settleWorld();
+      } else {
+        threeScript.addEventListener('load', settleWorld);
+        threeScript.addEventListener('error', settleWorld);
+        setTimeout(settleWorld, 5000);
+      }
+
       /* ---------------- Mobile menu ---------------- */
       var mobileMenuButton = document.getElementById('mobile-menu-button');
       var mobileMenu = document.getElementById('mobile-menu');
@@ -1642,6 +2153,7 @@
       var header = document.getElementById('site-header');
       var progressBar = document.getElementById('progress-bar');
       var backToTop = document.getElementById('back-to-top');
+      var scrollHint = document.getElementById('scroll-hint');
       function onScroll() {
         var y = window.scrollY;
         if (header) header.classList.toggle('scrolled', y > 10);
@@ -1650,6 +2162,7 @@
           progressBar.style.width = (max > 0 ? (y / max) * 100 : 0) + '%';
         }
         if (backToTop) backToTop.classList.toggle('show', y > 600);
+        if (scrollHint) scrollHint.classList.toggle('hide', y > 140);
       }
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
@@ -1869,7 +2382,9 @@
         if (keyBuffer.length > konami.length) keyBuffer.shift();
         if (keyBuffer.join(',') === konami.join(',')) {
           toast('[ OK ] OVERRIDE ACCEPTED — thrusters at 110%');
-          if (window.__lidarBurst) {
+          if (window.__barrelRoll) {
+            window.__barrelRoll();
+          } else if (window.__lidarBurst) {
             document.getElementById('hero').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
             window.__lidarBurst();
             setTimeout(window.__lidarBurst, 400);
